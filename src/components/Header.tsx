@@ -30,8 +30,25 @@ const Header = () => {
     <header className="bg-slate-950 text-white py-4">
       <div className="container mx-auto flex justify-between items-center px-4">
         <div className="text-2xl">
-          <Link href="/" className="text-white hover:text-gray-400">
-            seomix.
+          <Link
+            href="/"
+            className="text-white hover:text-gray-400 flex flex-row gap-2 items-center"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M3 5L11 12L3 19M12 19H21"
+              />
+            </svg>
+            <p>seomix.</p>
           </Link>
         </div>
         <button onClick={toggleMenu} className="block md:hidden">
