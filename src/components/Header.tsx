@@ -27,12 +27,12 @@ const Header = () => {
   }, [menuOpen]);
 
   return (
-    <header className="bg-slate-950 text-white py-4 border-b border-gray-50">
+    <header className="py-6 border-b border-gray-50">
       <div className="container mx-auto flex justify-between items-center px-4">
         <div className="text-2xl">
           <Link
             href="/"
-            className="text-white hover:text-gray-400 flex flex-row gap-2 items-center"
+            className="hover:text-gray-400 flex flex-row gap-2 items-center"
           >
             <svg
               className="w-6 h-6"

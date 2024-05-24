@@ -16,7 +16,7 @@ const SimpleButton: React.FC<SimpleButtonProps> = ({
     <Link href={href}>
       <button
         title={text}
-        className={`inline-flex items-center px-4 py-2 bg-slate-300 border border-transparent rounded-md font-medium text-slate-700 hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-lg transition duration-300 ease-in-out
+        className={`inline-flex items-center px-6 py-4 bg-slate-300 border border-transparent rounded-md font-medium text-slate-700 hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-lg transition duration-300 ease-in-out
   ${className}
 `}
       >

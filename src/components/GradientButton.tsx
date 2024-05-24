@@ -17,7 +17,7 @@ const GradientButton: React.FC<GradientButtonProps> = ({
     <Link href={href}>
       <button
         title={text}
-        className={`inline-flex items-center px-4 py-2 bg-gradient-to-r 
+        className={`inline-flex items-center px-6 py-4 bg-gradient-to-r 
   from-blue-500 via-purple-500 to-pink-500
   text-white font-medium rounded-lg shadow-lg 
   hover:from-pink-500 hover:via-purple-500 hover:to-blue-500

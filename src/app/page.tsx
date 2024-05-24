@@ -15,23 +15,23 @@ export default function Home() {
   return (
     <>
       <section className="flex flex-col md:flex-row">
-        <div className="w-full md:w-1/2 py-20">
+        <div className="md:w-1/2 py-20">
           <Headline text="Разработка" />
           <h1 className="text-xl md:text-4xl py-5 font-bold">
             сайтов и мобильных приложений в Горно-Алтайске
           </h1>
-          <p className="py-2">
+          <p className="mt-2">
             Создаю по-настоящему эффективные сайты: внедряю актуальные
             IT-разработки, уделяю максимум внимания дизайну и юзабилити.
           </p>
-          <p className="py-2">Хотите узнать больше о том, как мы можем сотрудничать? Обращайтесь!</p>
-          <div className=" flex flex-col md:flex-row gap-4 md:gap-10 my-5" >
+          <p className="mt-2">Хотите узнать больше о том, как мы можем сотрудничать? Обращайтесь!</p>
+          <div className=" flex flex-col md:flex-row gap-4 md:gap-10 mt-8" >
           <GradientButton text="Начать проект" href="/contact" />
           <SimpleButton text="Примеры работ" href="/portfolio" />
           </div>
           
         </div>
-        <div className="w-full md:w-1/2">
+        <div className="md:w-1/2">
           <LottieAnimation
             animationData={animationData}
             height="300px md:height-[600px]"
