@@ -2,6 +2,9 @@
 
 import animationData from "@/assets/animate/home_banner.json";
 import dynamic from "next/dynamic";
+import Headline from "@/components/Headline";
+import GradientButton from "@/components/GradientButton";
+import SimpleButton from "@/components/SimpleButton";
 
 export default function Home() {
   const LottieAnimation = dynamic(
@@ -11,14 +14,22 @@ export default function Home() {
 
   return (
     <>
-      <section className="flex flex-col md:flex-row ">
+      <section className="flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 py-20">
-          <h1 className="text-4xl md:text-8xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            Разработка
-          </h1>
+          <Headline text="Разработка" />
           <h1 className="text-xl md:text-4xl py-5 font-bold">
             сайтов и мобильных приложений в Горно-Алтайске
           </h1>
+          <p className="py-2">
+            Создаю по-настоящему эффективные сайты: внедряю актуальные
+            IT-разработки, уделяю максимум внимания дизайну и юзабилити.
+          </p>
+          <p className="py-2">Хотите узнать больше о том, как мы можем сотрудничать? Обращайтесь!</p>
+          <div className=" flex flex-col md:flex-row gap-4 md:gap-10 my-5" >
+          <GradientButton text="Начать проект" href="/contact" />
+          <SimpleButton text="Примеры работ" href="/portfolio" />
+          </div>
+          
         </div>
         <div className="w-full md:w-1/2">
           <LottieAnimation
@@ -27,6 +38,9 @@ export default function Home() {
             width="300px md:width-[600px]"
           />
         </div>
+      </section>
+      <section className="bg-slate-950 text-white">
+        <h2 className="text-xl md:text-4xl py-5 font-bold">Мои услуги</h2>
       </section>
     </>
   );

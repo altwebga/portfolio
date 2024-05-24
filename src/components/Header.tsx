@@ -27,7 +27,7 @@ const Header = () => {
   }, [menuOpen]);
 
   return (
-    <header className="bg-slate-950 text-white py-4">
+    <header className="bg-slate-950 text-white py-4 border-b border-gray-50">
       <div className="container mx-auto flex justify-between items-center px-4">
         <div className="text-2xl">
           <Link
