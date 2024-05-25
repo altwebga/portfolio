@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Headline from "@/components/Headline";
 import GradientButton from "@/components/GradientButton";
 import SimpleButton from "@/components/SimpleButton";
+import ServicesCard from "@/components/ServicesCard";
 
 export default function Home() {
   const LottieAnimation = dynamic(
@@ -41,6 +42,7 @@ export default function Home() {
       </section>
       <section className="bg-slate-950 text-white">
         <h2 className="text-xl md:text-4xl py-5 font-bold">Мои услуги</h2>
+        <ServicesCard/>
       </section>
     </>
   );
