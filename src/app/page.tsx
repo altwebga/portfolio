@@ -6,6 +6,7 @@ import Headline from "@/components/Headline";
 import GradientButton from "@/components/GradientButton";
 import SimpleButton from "@/components/SimpleButton";
 import ServicesCard from "@/components/ServicesCard";
+import ClientCard from "@/components/ClientCard";
 
 export default function Home() {
   const LottieAnimation = dynamic(
@@ -40,9 +41,16 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="bg-slate-950 text-white">
-        <h2 className="text-xl md:text-4xl py-5 font-bold">Мои услуги</h2>
+      <section>
+        <h2 className="text-xl md:text-4xl font-bold">Мои услуги</h2>
+        <p>Весть спектр услуг для старта продаж в интернете.</p>
         <ServicesCard/>
+        <GradientButton text="Все услуги" href="/services" />
+      </section>
+      <section className="mt-8">
+      <h2 className="text-xl md:text-4xl font-bold">Среди моих клиентов</h2>
+      <p>малый и средний бизнес</p>
+      <ClientCard/>
       </section>
     </>
   );
