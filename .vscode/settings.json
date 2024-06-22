@@ -1,5 +1,3 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["clsx", "nextui", "seomix"],
-  "svg.preview.background": "white"
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
