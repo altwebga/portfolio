@@ -6,8 +6,7 @@ import { SwitchProps, useSwitch } from "@nextui-org/switch";
 import { useTheme } from "next-themes";
 import { useIsSSR } from "@react-aria/ssr";
 import clsx from "clsx";
-
-import { SunFilledIcon, MoonFilledIcon } from "@/components/icons";
+import { PiSunDimFill, PiMoonFill } from "react-icons/pi";
 
 export interface ThemeSwitchProps {
   className?: string;
@@ -34,7 +33,9 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
     getWrapperProps,
   } = useSwitch({
     isSelected: theme === "light" || isSSR,
-    "aria-label": `Switch to ${theme === "light" || isSSR ? "dark" : "light"} mode`,
+    "aria-label": `Switch to ${
+      theme === "light" || isSSR ? "dark" : "light"
+    } mode`,
     onChange,
   });
 
@@ -71,9 +72,9 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
         })}
       >
         {!isSelected || isSSR ? (
-          <SunFilledIcon size={22} />
+          <PiSunDimFill size={24} />
         ) : (
-          <MoonFilledIcon size={22} />
+          <PiMoonFill size={24} />
         )}
       </div>
     </Component>

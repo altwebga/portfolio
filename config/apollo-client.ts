@@ -1,8 +1,8 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-const client = new ApolloClient({
-  uri: "https://your-graphql-endpoint.com/graphql", // Замените на ваш GraphQL эндпоинт
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+export const client = new ApolloClient({
+  uri: baseUrl,
   cache: new InMemoryCache(),
 });
-
-export default client;

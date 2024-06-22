@@ -9,7 +9,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { ApolloProvider } from "@apollo/client";
 
-import client from "../config/apollo-client";
+import { client } from "../config/apollo-client";
 
 export interface ProvidersProps {
   children: React.ReactNode;
