@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h2 {
+  @apply text-3xl font-semibold pb-6;
+}
+
+h3 {
+  @apply text-2xl font-semibold pb-6;
+}
+
+p {
+  @apply text-base leading-relaxed pb-4;
+}
