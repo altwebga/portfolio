@@ -32,7 +32,7 @@ export const Header = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <PiCubeTransparentFill className="h-6 w-6" />
-            <p className="font-bold text-inherit text-xl">seomix.</p>
+            <span className="font-bold text-inherit text-xl">seomix.</span>
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
