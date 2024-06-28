@@ -19,6 +19,11 @@ export const HeaderMenu = [
     label: "Контакты",
     link: "/contact",
   },
+  {
+    id: 5,
+    label: "Блог",
+    link: "/blog",
+  },
 ];
 
 export const MobileMenu = [
@@ -41,5 +46,10 @@ export const MobileMenu = [
     id: 4,
     label: "Контакты",
     link: "/contact",
+  },
+  {
+    id: 5,
+    label: "Блог",
+    link: "/blog",
   },
 ];

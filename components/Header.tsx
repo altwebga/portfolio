@@ -27,6 +27,7 @@ export const Header = () => {
       maxWidth="xl"
       position="sticky"
       onMenuOpenChange={setIsMenuOpen}
+      isBordered
     >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
@@ -40,7 +41,7 @@ export const Header = () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
+        <ul className="hidden lg:flex gap-8 justify-start ml-2">
           {HeaderMenu.map((item) => (
             <NavbarItem key={item.id}>
               <NextLink
@@ -69,7 +70,7 @@ export const Header = () => {
       </NavbarContent>
 
       <NavbarMenu>
-        <div className="mx-4 mt-2 flex flex-col gap-2">
+        <div className="mx-4 mt-2 flex flex-col gap-6">
           {MobileMenu.map((item) => (
             <NavbarMenuItem key={item.id}>
               <Link
