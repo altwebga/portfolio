@@ -1,38 +1,13 @@
-// app/portfolio/[slug]/page.tsx
 import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
 import { RuTubePlayer } from "@/components/RuTubePlayer";
 import { CallToAction } from "@/components/CallToAction";
 import { title } from "@/components/primitives";
-
-interface Portfolio {
-  id: number;
-  slug: string;
-  title: {
-    rendered: string;
-  };
-  content: {
-    rendered: string;
-    protected: boolean;
-  };
-  featured_media: number;
-  acf: {
-    logo: number;
-    businessCategory: string;
-    website: string;
-    rutube: string;
-    release: string;
-    youtube: string;
-  };
-}
-
-interface Media {
-  source_url: string;
-}
+import { Portfolio } from "@/types";
 
 async function getCase(slug: string): Promise<Portfolio> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/portfolio?slug=${slug}&_fields=id,title,content,slug,featured_media,acf`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/portfolio?slug=${slug}&_fields=id,title,content,slug,featured_media,acf,featured_media_url,logo_url`
   );
 
   if (!res.ok) {
@@ -43,29 +18,17 @@ async function getCase(slug: string): Promise<Portfolio> {
   return data[0];
 }
 
-async function getMedia(id: number): Promise<Media> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/media/${id}`);
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch media");
-  }
-
-  return res.json();
-}
-
 export default async function SinglePortfolioPage({
   params,
 }: {
   params: { slug: string };
 }) {
   const portfolio = await getCase(params.slug);
-  const featuredMedia = await getMedia(portfolio.featured_media);
-  const logoMedia = await getMedia(portfolio.acf.logo);
 
   return (
     <div className="py-4">
       <div className="flex flex-row gap-2">
-        <Image alt="Логотип" src={logoMedia.source_url} width={80} />
+        <Image alt="Логотип" src={portfolio.logo_url} width={80} />
         <div>
           <h1 className={title()}>{portfolio.title.rendered}</h1>
           <p>{portfolio.acf.businessCategory}</p>

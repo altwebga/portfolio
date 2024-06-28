@@ -1,20 +1,11 @@
 import { title } from "@/components/primitives";
 import { PortfolioCard } from "@/components/PortfolioCard";
+import NoImage from "@/public/image/image not found.webp";
 
 async function getCases() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/portfolio?_fields=id,title,slug,featured_media,acf`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/portfolio?_fields=id,title,slug,featured_media,acf,featured_media_url,logo_url`
   );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
-
-async function getImage(id: number) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/media/${id}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -26,21 +17,12 @@ async function getImage(id: number) {
 export default async function PortfolioPage() {
   const data = await getCases();
 
-  const imagePromises = data.map(async (item: any) => {
-    const featuredMedia = item.featured_media
-      ? await getImage(item.featured_media)
-      : null;
-    const logo = item.acf.logo ? await getImage(item.acf.logo) : null;
-
-    return {
-      ...item,
-      featuredMediaUrl: featuredMedia ? featuredMedia.source_url : null,
-      logoUrl: logo ? logo.source_url : null,
-      businessCategory: item.acf.businessCategory,
-    };
-  });
-
-  const portfolioWithImages = await Promise.all(imagePromises);
+  const portfolioWithImages = data.map((item: any) => ({
+    ...item,
+    featuredMediaUrl: item.featured_media_url || NoImage.src,
+    logoUrl: item.logo_url || NoImage.src,
+    businessCategory: item.acf.businessCategory,
+  }));
 
   return (
     <div className="py-4">
@@ -53,7 +35,7 @@ export default async function PortfolioPage() {
             title={item.title.rendered}
             logo={item.logoUrl}
             image={item.featuredMediaUrl}
-            businessCategory={item.businessCategory} // Используем правильное поле
+            businessCategory={item.businessCategory}
           />
         ))}
       </div>
