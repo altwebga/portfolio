@@ -1,6 +1,6 @@
 import { title } from "@/components/primitives";
 import { PortfolioCard } from "@/components/PortfolioCard";
-import NoImage from "@/public/image/image not found.webp";
+import NoImage from "@/public/image/image_not_found.webp";
 
 async function getCases() {
   const res = await fetch(
@@ -26,7 +26,7 @@ export default async function PortfolioPage() {
 
   return (
     <div className="py-4">
-      <h1 className={title()}>Portfolio</h1>
+      <h1 className={title()}>Мои работы</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
         {portfolioWithImages.map((item: any) => (
           <PortfolioCard

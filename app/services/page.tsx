@@ -1,7 +1,7 @@
 import { title } from "@/components/primitives";
 import { ServicesCard } from "@/components/ServicesCard";
 import { Service } from "@/types";
-import NoImage from "@/public/image/image not found.webp";
+import NoImage from "@/public/image/image_not_found.webp";
 
 async function getServices(): Promise<Service[]> {
   const res = await fetch(
@@ -24,7 +24,7 @@ export default async function ServicesPage() {
 
   return (
     <div className="py-4">
-      <h1 className={title()}>Services</h1>
+      <h1 className={title()}>Мои услуги</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
         {servicesWithImages.map((service) => (
           <ServicesCard

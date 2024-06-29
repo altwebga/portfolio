@@ -34,7 +34,7 @@ export const PortfolioCard = ({
           <div className="flex flex-grow gap-2 items-center">
             <Image alt="Логотип" className="w-11 h-11 bg-black" src={logo} />
             <div className="flex flex-col">
-              <p className="text-tiny text-white/60">{title}</p>
+              <p className="text-tiny font-bold text-white/60">{title}</p>
               <p className="text-tiny text-white/60">{businessCategory}</p>
             </div>
           </div>

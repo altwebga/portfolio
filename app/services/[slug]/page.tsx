@@ -1,5 +1,7 @@
 import { Image } from "@nextui-org/image";
+
 import { title } from "@/components/primitives";
+import { CallToAction } from "@/components/CallToAction";
 import { Portfolio } from "@/types";
 
 async function getService(slug: string): Promise<Portfolio> {
@@ -12,6 +14,7 @@ async function getService(slug: string): Promise<Portfolio> {
   }
 
   const data = await res.json();
+
   return data[0];
 }
 
@@ -24,21 +27,15 @@ export default async function SingleServicePage({
 
   return (
     <div className="py-4">
-      <div className="flex flex-row gap-2">
-        <Image
-          alt="Изображение услуги"
-          src={service.featured_media_url}
-          width={80}
+      <h1 className={title()}>{service.title.rendered}</h1>
+      <div className="flex flex-col-reverse md:flex-row gap-4 py-6 justify-between">
+        <div
+          dangerouslySetInnerHTML={{ __html: service.content.rendered }}
+          className="max-w-2xl"
         />
-        <div>
-          <h1 className={title()}>{service.title.rendered}</h1>
-        </div>
+        <Image src={service.featured_media_url} width={400} />
       </div>
-      <div
-        dangerouslySetInnerHTML={{ __html: service.content.rendered }}
-        className="py-4 max-w-4xl"
-      />
-      <div className="w-full text-right py-6"></div>
+      <CallToAction />
     </div>
   );
 }
