@@ -23,9 +23,9 @@ export default async function ServicesPage() {
   }));
 
   return (
-    <div>
+    <div className="py-4">
       <h1 className={title()}>Services</h1>
-      <div className="services-container">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
         {servicesWithImages.map((service) => (
           <ServicesCard
             key={service.id}

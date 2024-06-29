@@ -19,23 +19,24 @@ export const ServicesCard = ({
     <Link href={`services/${slug}`}>
       <Card
         isBlurred
-        className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]"
+        className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px] min-h-56"
         shadow="sm"
       >
         <CardBody>
-          <div className="relative col-span-6 md:col-span-4">
-            <Image
-              alt={title}
-              className="object-cover"
-              height={200}
-              shadow="md"
-              src={image}
-              width="100%"
-            />
-          </div>
-          <div>
-            <h3>{title}</h3>
-            <p>{excerpt}</p>
+          <div className="flex flex-col md:flex-row gap-8 items-center">
+            <div className="relative col-span-6 md:col-span-4">
+              <Image
+                alt={title}
+                shadow="md"
+                src={image}
+                width={400}
+                height={400}
+              />
+            </div>
+            <div>
+              <h3>{title}</h3>
+              <div dangerouslySetInnerHTML={{ __html: excerpt }} />
+            </div>
           </div>
         </CardBody>
       </Card>

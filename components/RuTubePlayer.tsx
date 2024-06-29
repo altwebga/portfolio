@@ -4,11 +4,11 @@ interface RuTubePlayerProps {
 
 export const RuTubePlayer: React.FC<RuTubePlayerProps> = ({ videoId }) => {
   return (
-    <div className="relative pt-[56.25%] w-full h-0">
+    <div className="p-2 border border-gray-500">
       <iframe
+        className="w-full h-[550px]"
         allowFullScreen
         allow="autoplay; encrypted-media"
-        className="absolute top-0 left-0 w-full h-full border-0"
         src={`https://rutube.ru/play/embed/${videoId}`}
         title="This is a unique title"
       />

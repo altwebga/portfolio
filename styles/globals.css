@@ -3,15 +3,11 @@
 @tailwind utilities;
 
 h2 {
-  @apply text-3xl font-semibold py-4;
+  @apply text-3xl font-semibold pb-2;
 }
 
 h3 {
-  @apply text-2xl font-semibold py-4;
-}
-
-p {
-  @apply text-base leading-relaxed py-4;
+  @apply text-2xl font-semibold pb-2;
 }
 
 ol {
