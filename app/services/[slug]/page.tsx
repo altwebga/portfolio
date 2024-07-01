@@ -2,9 +2,9 @@ import { Image } from "@nextui-org/image";
 
 import { title } from "@/components/primitives";
 import { CallToAction } from "@/components/CallToAction";
-import { Portfolio } from "@/types";
+import { Service } from "@/types";
 
-async function getService(slug: string): Promise<Portfolio> {
+async function getService(slug: string): Promise<Service> {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/services?slug=${slug}&_fields=id,title,slug,featured_media,content,excerpt,featured_media_url`
   );
@@ -29,10 +29,16 @@ export default async function SingleServicePage({
     <div className="py-4">
       <h1 className={title()}>{service.title.rendered}</h1>
       <div className="flex flex-col-reverse md:flex-row gap-4 py-6 justify-between">
-        <div
-          dangerouslySetInnerHTML={{ __html: service.content.rendered }}
-          className="max-w-2xl"
-        />
+        <div>
+          <div
+            dangerouslySetInnerHTML={{ __html: service.excerpt.rendered }}
+            className="max-w-2xl"
+          />
+          <div
+            dangerouslySetInnerHTML={{ __html: service.content.rendered }}
+            className="max-w-2xl"
+          />
+        </div>
         <Image src={service.featured_media_url} width={400} />
       </div>
       <CallToAction />

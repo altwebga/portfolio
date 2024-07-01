@@ -11,6 +11,10 @@ export type Service = {
   title: {
     rendered: string;
   };
+  content: {
+    rendered: string;
+    protected: boolean;
+  };
   excerpt: {
     rendered: string;
     protected: boolean;

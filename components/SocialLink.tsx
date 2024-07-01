@@ -49,9 +49,17 @@ type SocialLinkProps = {
     | "success"
     | "warning"
     | "danger";
+  size: "small" | "medium" | "large";
 };
 
-export const SocialLink = ({ color }: SocialLinkProps) => {
+export const SocialLink = ({ color, size }: SocialLinkProps) => {
+  // Определите классы для размера
+  const sizeClasses = {
+    small: "w-4 h-4",
+    medium: "w-6 h-6",
+    large: "w-8 h-8",
+  };
+
   return (
     <div className="flex flex-row gap-4 h-14">
       {socialLinks.map((item) => (
@@ -62,7 +70,7 @@ export const SocialLink = ({ color }: SocialLinkProps) => {
           color={color}
           href={item.url}
         >
-          <item.icon className="w-6 h-6" />
+          <item.icon className={sizeClasses[size]} />
         </Link>
       ))}
     </div>

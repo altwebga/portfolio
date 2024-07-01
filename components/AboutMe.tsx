@@ -8,9 +8,9 @@ export const AboutMe = () => {
       <Image
         isBlurred
         className="min-w-72"
+        shadow="md"
         src={MyPhoto.src}
         width={300}
-        shadow="md"
       />
       <div className="">
         <h3>Привет, меня зовут Константин.</h3>
