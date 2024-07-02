@@ -3,6 +3,7 @@ import { Link } from "@nextui-org/link";
 
 import { SpinningCube } from "@/components/SpinningCube";
 import { title, subtitle } from "@/components/primitives";
+import { Clients } from "@/components/ClientCard";
 
 export default function Home() {
   return (
@@ -31,7 +32,13 @@ export default function Home() {
           </Button>
         </div>
         <div className="pt-12">
-          <h2 className={title({ size: "sm" })}>Весь спектр услуг</h2>
+          <h2>Среди моих клиентов</h2>
+          <div className="py-8">
+            <Clients />
+          </div>
+        </div>
+        <div>
+          <h2>Мои работы</h2>
         </div>
       </div>
     </div>

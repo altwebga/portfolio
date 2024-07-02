@@ -45,3 +45,13 @@ export type Portfolio = {
     youtube: string;
   };
 };
+
+export type Client = {
+  id: number;
+  description: string;
+  name: string;
+  acf: {
+    "client-logo": number;
+  };
+  client_logo_url: string;
+};
