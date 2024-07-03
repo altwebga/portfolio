@@ -2,18 +2,7 @@ import { Image } from "@nextui-org/image";
 import { Card, CardBody } from "@nextui-org/card";
 
 import { Client } from "@/types";
-
-async function getClients() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/clients?_fields=id,name,acf,description,client_logo_url`
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
+import { getClients } from "@/config/api";
 
 export const Clients = async () => {
   const clients: Client[] = await getClients();

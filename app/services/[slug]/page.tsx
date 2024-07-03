@@ -1,22 +1,9 @@
+// app/services/[slug]/page.tsx
 import { Image } from "@nextui-org/image";
 
 import { title } from "@/components/primitives";
 import { CallToAction } from "@/components/CallToAction";
-import { Service } from "@/types";
-
-async function getService(slug: string): Promise<Service> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/services?slug=${slug}&_fields=id,title,slug,featured_media,content,excerpt,featured_media_url`
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const data = await res.json();
-
-  return data[0];
-}
+import { getService } from "@/config/api";
 
 export default async function SingleServicePage({
   params,

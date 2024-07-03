@@ -1,22 +1,10 @@
 import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
+
 import { RuTubePlayer } from "@/components/RuTubePlayer";
 import { CallToAction } from "@/components/CallToAction";
 import { title } from "@/components/primitives";
-import { Portfolio } from "@/types";
-
-async function getCase(slug: string): Promise<Portfolio> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/portfolio?slug=${slug}&_fields=id,title,content,slug,featured_media,acf,featured_media_url,logo_url`
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const data = await res.json();
-  return data[0];
-}
+import { getCase } from "@/config/api";
 
 export default async function SinglePortfolioPage({
   params,
