@@ -21,6 +21,9 @@ export type Service = {
   };
   featured_media: number;
   featured_media_url: string;
+  acf: {
+    price: string;
+  };
 };
 
 export type Portfolio = {

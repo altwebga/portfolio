@@ -7,6 +7,7 @@ type ServicesCardProps = {
   title: string;
   image: string;
   excerpt: string;
+  price: string;
 };
 
 export const ServicesCard = ({
@@ -14,6 +15,7 @@ export const ServicesCard = ({
   title,
   image,
   excerpt,
+  price,
 }: ServicesCardProps) => {
   return (
     <Link href={`services/${slug}`}>
@@ -27,15 +29,16 @@ export const ServicesCard = ({
             <div className="flex-1">
               <Image
                 alt={title}
+                height={400}
                 shadow="md"
                 src={image}
                 width={400}
-                height={400}
               />
             </div>
             <div className="flex-1">
               <h3 className="text-xl">{title}</h3>
               <div dangerouslySetInnerHTML={{ __html: excerpt }} />
+              <p className="pt-4 text-green-600">{price}</p>
             </div>
           </div>
         </CardBody>

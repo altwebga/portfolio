@@ -1,21 +1,28 @@
-// config/api.ts
 import { Service, Portfolio, Client } from "@/types";
 
-export async function getServices(): Promise<Service[]> {
+const DEFAULT_ITEMS_PER_PAGE = 20; // значение по умолчанию
+
+export async function getServices(
+  page: number = 1,
+  perPage: number = DEFAULT_ITEMS_PER_PAGE
+): Promise<{ services: Service[]; totalPages: number }> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/services?_fields=id,title,slug,featured_media,excerpt,featured_media_url`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/services?_fields=id,title,slug,featured_media,excerpt,featured_media_url,acf&per_page=${perPage}&page=${page}`
   );
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
 
-  return res.json();
+  const services = await res.json();
+  const totalPages = parseInt(res.headers.get("X-WP-TotalPages") || "0", 10);
+
+  return { services, totalPages };
 }
 
 export async function getService(slug: string): Promise<Service> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/services?slug=${slug}&_fields=id,title,slug,featured_media,content,excerpt,featured_media_url`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/services?slug=${slug}&_fields=id,title,slug,featured_media,content,excerpt,featured_media_url,acf`
   );
 
   if (!res.ok) {

@@ -1,13 +1,18 @@
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 import { SpinningCube } from "@/components/SpinningCube";
 import { title, subtitle } from "@/components/primitives";
 import { Clients } from "@/components/ClientCard";
+import { getServices } from "@/config/api";
+import { Service } from "@/types";
 
-export default function Home() {
+export default async function Home() {
+  const { services } = await getServices();
+
   return (
-    <>
+    <div>
       <section className="bg-hero-grid bg-repeat bg-center h-full">
         <div className="container mx-auto max-w-7xl px-4 py-6">
           <div className="flex flex-col md:flex-row items-center md:pt-12">
@@ -40,11 +45,24 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <section className="container mx-auto max-w-7xl px-4 py-6">
         <div>
-          <h2>Весть спектр услуг для старта в интернете</h2>
+          <h2 className="py-6">Весть спектр услуг для старта в интернете</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {services.map((item: Service) => (
+              <Link
+                key={item.id}
+                className="flex flex-row gap-2"
+                href={`/services/${item.slug}`}
+              >
+                <IoMdCheckmarkCircleOutline className="w-6 h-6 text-green-600" />
+                <p>{item.title.rendered}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

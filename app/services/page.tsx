@@ -3,12 +3,12 @@ import { title } from "@/components/primitives";
 import { ServicesCard } from "@/components/ServicesCard";
 import { Service } from "@/types";
 import NoImage from "@/public/image/image_not_found.webp";
-import { getServices } from "@/config/api"; // Импортируем функцию из нового файла
+import { getServices } from "@/config/api";
 
 export default async function ServicesPage() {
-  const data: Service[] = await getServices();
+  const { services } = await getServices();
 
-  const servicesWithImages = data.map((service: Service) => ({
+  const servicesWithImages = services.map((service: Service) => ({
     ...service,
     featuredMediaUrl: service.featured_media_url || NoImage.src,
   }));
@@ -22,6 +22,7 @@ export default async function ServicesPage() {
             key={service.id}
             excerpt={service.excerpt.rendered}
             image={service.featuredMediaUrl}
+            price={service.acf.price}
             slug={service.slug}
             title={service.title.rendered}
           />
