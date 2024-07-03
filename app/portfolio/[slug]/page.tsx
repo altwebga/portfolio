@@ -14,7 +14,7 @@ export default async function SinglePortfolioPage({
   const portfolio = await getCase(params.slug);
 
   return (
-    <div className="py-4">
+    <div className="py-8">
       <div className="flex flex-row gap-2">
         <Image alt="Логотип" src={portfolio.logo_url} width={80} />
         <div>

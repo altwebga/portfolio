@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/ContactForm";
 
 export default function ContactPage() {
   return (
-    <div className="py-4">
+    <div className="py-8">
       <h1 className={title()}>Мои контакты</h1>
       <div className="flex flex-col md:flex-row gap-12 py-6">
         <div className="flex-1">

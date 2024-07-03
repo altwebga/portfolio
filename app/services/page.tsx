@@ -14,7 +14,7 @@ export default async function ServicesPage() {
   }));
 
   return (
-    <div className="py-4">
+    <div className="py-8">
       <h1 className={title()}>Мои услуги</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
         {servicesWithImages.map((service) => (

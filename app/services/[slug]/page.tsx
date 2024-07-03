@@ -13,7 +13,7 @@ export default async function SingleServicePage({
   const service = await getService(params.slug);
 
   return (
-    <div className="py-4">
+    <div className="py-8">
       <h1 className={title()}>{service.title.rendered}</h1>
       <div className="flex flex-col-reverse md:flex-row gap-4 py-6 justify-between">
         <div>

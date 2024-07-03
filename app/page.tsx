@@ -48,8 +48,8 @@ export default async function Home() {
 
       <section className="container mx-auto max-w-7xl px-4 py-6">
         <div>
-          <h2 className="py-6">Весть спектр услуг для старта в интернете</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <h2 className="py-8">Весть спектр услуг для старта в интернете</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {services.map((item: Service) => (
               <Link
                 key={item.id}
@@ -57,10 +57,17 @@ export default async function Home() {
                 href={`/services/${item.slug}`}
               >
                 <IoMdCheckmarkCircleOutline className="w-6 h-6 text-green-600" />
-                <p>{item.title.rendered}</p>
+                <p className="text-xl">{item.title.rendered}</p>
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-footer-texture bg-repeat bg-center h-full">
+        <div className="container mx-auto max-w-7xl px-4 py-6">
+          <h2>Интеграции</h2>
+          <p>Надоело </p>
         </div>
       </section>
     </div>
