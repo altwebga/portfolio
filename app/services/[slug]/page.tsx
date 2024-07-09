@@ -1,16 +1,35 @@
-// app/services/[slug]/page.tsx
+import type { Metadata } from "next";
+
 import { Image } from "@nextui-org/image";
 
 import { title } from "@/components/primitives";
 import { CallToAction } from "@/components/CallToAction";
 import { getService } from "@/config/api";
 
+// Функция для получения данных сервиса
+async function fetchServiceData(slug: string) {
+  return await getService(slug);
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const service = await fetchServiceData(params.slug);
+
+  return {
+    title: service.title.rendered,
+    description: service.excerpt.rendered,
+  };
+}
+
 export default async function SingleServicePage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const service = await getService(params.slug);
+  const service = await fetchServiceData(params.slug);
 
   return (
     <div className="py-8">

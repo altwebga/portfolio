@@ -1,9 +1,19 @@
 // app/services/page.tsx
+import type { Metadata } from "next";
+
 import { title } from "@/components/primitives";
 import { ServicesCard } from "@/components/ServicesCard";
 import { Service } from "@/types";
 import NoImage from "@/public/image/image_not_found.webp";
 import { getServices } from "@/config/api";
+
+export const metadata: Metadata = {
+  title: "Услуги",
+  description:
+    "Профессиональные услуги по разработке и продвижению сайтов. Создание современных и эффективных веб-ресурсов, SEO-оптимизация и маркетинг.",
+  keywords:
+    "разработка сайтов, продвижение сайтов, создание веб-ресурсов, SEO-оптимизация, веб-дизайн, интернет-маркетинг",
+};
 
 export default async function ServicesPage() {
   const { services } = await getServices();

@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
 
@@ -6,12 +8,30 @@ import { CallToAction } from "@/components/CallToAction";
 import { title } from "@/components/primitives";
 import { getCase } from "@/config/api";
 
+// Функция для получения данных сервиса
+async function fetchPortfolioData(slug: string) {
+  return await getCase(slug);
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const service = await fetchPortfolioData(params.slug);
+
+  return {
+    title: service.title.rendered,
+    description: `Разработка сайта ${service.title.rendered}`,
+  };
+}
+
 export default async function SinglePortfolioPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const portfolio = await getCase(params.slug);
+  const portfolio = await fetchPortfolioData(params.slug);
 
   return (
     <div className="py-8">
