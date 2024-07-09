@@ -31,7 +31,7 @@ export default async function Home() {
               <SpinningCube />
             </div>
           </div>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row gap-4 mt-6">
             <Button as={Link} color="primary" href="/contact" variant="solid">
               Начать проект
             </Button>
@@ -50,12 +50,12 @@ export default async function Home() {
 
       <section className="container mx-auto max-w-7xl px-4 py-6">
         <div>
-          <h2 className="py-8">Весть спектр услуг для старта в интернете</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <h2 className={title()}>Весь спектр услуг для старта в интернете</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-8">
             {sortedServices.map((item: Service) => (
               <Link
                 key={item.id}
-                className="flex flex-row gap-2"
+                className="flex flex-row gap-2 items-center"
                 href={`/services/${item.slug}`}
               >
                 <IoMdCheckmarkCircleOutline className="w-6 h-6 text-green-600" />
@@ -66,19 +66,21 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="py-8">
+      <section className="py-8 bg-integration-bg bg-no-repeat bg-center h-full">
         <div className="container mx-auto max-w-7xl px-4 py-6">
-          <h2>Интеграции</h2>
-          <p>Один сайт, все каналы продаж.</p>
           <div className="flex flex-col md:flex-row gap-4 py-4 items-center justify-between">
-            <p className="flex-1">
-              Использование сайта как мастер-системы для хранения данных и
-              интеграции с внешними платформами, такими как маркетплейсы,
-              социальные сети и CRM, обеспечивает централизованное управление,
-              автоматизацию процессов, улучшение обслуживания клиентов, экономию
-              времени и ресурсов, а также высокую гибкость, масштабируемость и
-              безопасность данных.
-            </p>
+            <div className="flex-1">
+              <h2 className={title()}>Интеграции</h2>
+              <p className={subtitle()}>Один сайт, все каналы продаж.</p>
+              <p className="py-4">
+                Сайт может быть использован как мастер-система для хранения
+                данных и интеграции с внешними платформами, такими как
+                маркетплейсы, социальные сети и CRM и т.д., что позволяет
+                управлять процессами централизованно, автоматизировать их,
+                улучшить обслуживание клиентов, сэкономить время и ресурсы,
+                повысить гибкость, масштабируемость и безопасность данных.
+              </p>
+            </div>
             <div className="flex-1">
               <IntegrationChart />
             </div>

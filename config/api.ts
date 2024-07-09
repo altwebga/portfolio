@@ -7,7 +7,7 @@ export async function getServices(
   perPage: number = DEFAULT_ITEMS_PER_PAGE
 ): Promise<{ services: Service[]; totalPages: number }> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/services?_fields=id,title,slug,featured_media,excerpt,featured_media_url,acf&per_page=${perPage}&page=${page}`
+    `${process.env.NEXT_PUBLIC_API_URL}/services?_fields=id,title,slug,featured_media,excerpt,featured_media_url,acf&per_page=${perPage}&page=${page}`
   );
 
   if (!res.ok) {
@@ -22,7 +22,7 @@ export async function getServices(
 
 export async function getService(slug: string): Promise<Service> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/services?slug=${slug}&_fields=id,title,slug,featured_media,content,excerpt,featured_media_url,acf`
+    `${process.env.NEXT_PUBLIC_API_URL}/services?slug=${slug}&_fields=id,title,slug,featured_media,content,excerpt,featured_media_url,acf`
   );
 
   if (!res.ok) {
@@ -36,7 +36,7 @@ export async function getService(slug: string): Promise<Service> {
 
 export async function getCases(): Promise<Portfolio[]> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/portfolio?_fields=id,title,slug,featured_media,acf,featured_media_url,logo_url`
+    `${process.env.NEXT_PUBLIC_API_URL}/portfolio?_fields=id,title,slug,featured_media,acf,featured_media_url,logo_url`
   );
 
   if (!res.ok) {
@@ -48,7 +48,7 @@ export async function getCases(): Promise<Portfolio[]> {
 
 export async function getCase(slug: string): Promise<Portfolio> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/portfolio?slug=${slug}&_fields=id,title,content,slug,featured_media,acf,featured_media_url,logo_url`
+    `${process.env.NEXT_PUBLIC_API_URL}/portfolio?slug=${slug}&_fields=id,title,content,slug,featured_media,acf,featured_media_url,logo_url`
   );
 
   if (!res.ok) {
@@ -62,7 +62,7 @@ export async function getCase(slug: string): Promise<Portfolio> {
 
 export async function getClients(): Promise<Client[]> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/clients?_fields=id,name,acf,description,client_logo_url`
+    `${process.env.NEXT_PUBLIC_API_URL}/clients?_fields=id,name,acf,description,client_logo_url`
   );
 
   if (!res.ok) {
