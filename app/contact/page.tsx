@@ -1,6 +1,14 @@
+import { Metadata } from "next";
+
 import { title } from "@/components/primitives";
 import { SocialLink } from "@/components/SocialLink";
 import { ContactForm } from "@/components/ContactForm";
+
+export const metadata: Metadata = {
+  title: "Контакты",
+  description:
+    "Контакты веб-студии по разработке и продвижению сайтов в Горно-Алтайске",
+};
 
 export default function ContactPage() {
   return (

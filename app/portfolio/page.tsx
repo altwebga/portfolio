@@ -1,8 +1,18 @@
+import { Metadata } from "next";
+
 import { title } from "@/components/primitives";
 import { PortfolioCard } from "@/components/PortfolioCard";
 import NoImage from "@/public/image/image_not_found.webp";
 import { getCases } from "@/config/api";
 import { Portfolio } from "@/types";
+
+export const metadata: Metadata = {
+  title: "Портфолио",
+  description:
+    "Портфолио разработчика сайтов и мобильных приложений в Горно-Алтайске.",
+  keywords:
+    "Разработка, сайтов, разработка мобильных приложений, продвижение сайтов",
+};
 
 export default async function PortfolioPage() {
   const data: Portfolio[] = await getCases();

@@ -23,6 +23,11 @@ export async function generateMetadata({
   return {
     title: service.title.rendered,
     description: `Разработка сайта ${service.title.rendered}`,
+    openGraph: {
+      title: service.title.rendered,
+      description: `Разработка сайта ${service.title.rendered}`,
+      images: service.featured_media_url,
+    },
   };
 }
 

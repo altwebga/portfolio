@@ -66,6 +66,13 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="py-8">
+        <div className="container mx-auto max-w-7xl px-4 py-6">
+          <h2 className={title()}>Этапы разработки</h2>
+          <p className={subtitle()}></p>
+        </div>
+      </section>
+
       <section className="py-8 bg-integration-bg bg-no-repeat bg-center h-full">
         <div className="container mx-auto max-w-7xl px-4 py-6">
           <div className="flex flex-col md:flex-row gap-4 py-4 items-center justify-between">

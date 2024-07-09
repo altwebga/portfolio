@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Image } from "@nextui-org/image";
 
 import { title } from "@/components/primitives";
@@ -5,6 +6,12 @@ import { AboutMe } from "@/components/AboutMe";
 import Diploma1 from "@/public/image/diploma_page_01.webp";
 import Diploma2 from "@/public/image/diploma_page_02.webp";
 import { CallToAction } from "@/components/CallToAction";
+
+export const metadata: Metadata = {
+  title: "Обо мне",
+  description:
+    "Разработка сайтов в Горно-Алтайске по низким ценам, частный вебмастер.",
+};
 
 export default function AboutPage() {
   return (
