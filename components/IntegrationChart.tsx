@@ -12,8 +12,8 @@ const sectors = [
 ];
 
 export const IntegrationChart = () => {
-  const radius = 200;
-  const innerRadius = 70;
+  const radius = 180;
+  const innerRadius = 60;
   const textRadius = (radius + innerRadius) / 2; // радиус для размещения текста
   const center = radius + 10;
   const angleStep = (2 * Math.PI) / sectors.length;
