@@ -9,6 +9,7 @@ import { getServices } from "@/config/api";
 import { Service } from "@/types";
 import { IntegrationChart } from "@/components/IntegrationChart";
 import { DevelopmentSteps } from "@/components/DevelopmentSteps";
+import { Quiz } from "@/components/Quiz";
 
 export default async function Home() {
   const { services } = await getServices();
@@ -17,11 +18,21 @@ export default async function Home() {
   return (
     <div className="px-4">
       <section className="bg-hero-grid bg-repeat bg-center h-full">
-        <div className="container mx-auto max-w-7xl py-16">
-          <div className="flex flex-col md:flex-row items-center md:pt-16">
+        <div className="flex container mx-auto max-w-7xl h-screen">
+          <div className="flex flex-col md:flex-row items-center py-4">
             <div className="flex-1 space-y-6 md:space-y-8">
-              <h1 className={title()}>Разработка и продвижение сайтов</h1>
-              <h1 className={title({ color: "violet" })}> в Горно-Алтайске</h1>
+              <h1 className={title({ size: "lg" })}>
+                Разработка и продвижение сайтов
+              </h1>
+              <h1
+                className={title({
+                  color: "violet",
+                  size: "lg",
+                })}
+              >
+                {" "}
+                в Горно-Алтайске
+              </h1>
               <p className={subtitle({ class: "mt-4" })}>
                 Адекватный креатив и технологичные решения для вашего бизнеса.
               </p>
@@ -63,8 +74,10 @@ export default async function Home() {
 
       <section className="container mx-auto max-w-7xl py-12">
         <div>
-          <h2 className={title()}>Полный цикл</h2>
-          <p className={subtitle()}>Весь спектр услуг для старта в интернете</p>
+          <h2 className={title()}>Весть спектр услуг</h2>
+          <p className={subtitle()}>
+            Все что нужно для быстрого старта в интернете
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
             {sortedServices.map((item: Service) => (
               <Link
@@ -109,6 +122,13 @@ export default async function Home() {
               <IntegrationChart />
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="container mx-auto max-w-4xl py-6">
+        <h1 className={title()}>Узнайте стоимость вашего проекта</h1>
+        <div className="py-6">
+          <Quiz />
         </div>
       </section>
     </div>

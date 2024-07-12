@@ -46,7 +46,7 @@ export const DevelopmentSteps = () => {
         <Card key={index} className="min-h-52" shadow="md">
           <CardBody>
             <h3>{step.title}</h3>
-            <div className="absolute inset-0 flex justify-center items-center text-8xl font-bold text-gray-500/25">
+            <div className="absolute inset-0 flex justify-center items-center text-9xl font-bold text-gray-500/25">
               {step.number}
             </div>
             <div className="relative z-10">
