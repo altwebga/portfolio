@@ -42,6 +42,7 @@ export default async function Home() {
                   className="py-2 px-6 text-lg"
                   color="primary"
                   href="/contact"
+                  size="lg"
                   variant="solid"
                 >
                   Начать проект
@@ -51,6 +52,7 @@ export default async function Home() {
                   className="py-2 px-6 text-lg"
                   color="default"
                   href="/portfolio"
+                  size="lg"
                   variant="solid"
                 >
                   Примеры работ
@@ -82,7 +84,7 @@ export default async function Home() {
             {sortedServices.map((item: Service) => (
               <Link
                 key={item.id}
-                className="flex flex-row gap-2 items-center bg-white shadow-md p-4 rounded-lg hover:bg-gray-100 transition"
+                className="flex flex-row gap-2 items-center"
                 href={`/services/${item.slug}`}
               >
                 <IoMdCheckmarkCircleOutline className="w-6 h-6 text-green-600" />
