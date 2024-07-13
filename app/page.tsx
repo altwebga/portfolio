@@ -127,10 +127,15 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="container mx-auto max-w-4xl py-6">
+      <section className="container mx-auto max-w-7xl py-6">
         <h1 className={title()}>Узнайте стоимость вашего проекта</h1>
-        <div className="py-6">
-          <Quiz />
+        <div className="flex flex-col md:flex-row gap-8 py-6">
+          <div className="w-full md:w-3/4">
+            <Quiz />
+          </div>
+          <div>
+            <p>Заполните форму ниже и получите бесплатную консультацию</p>
+          </div>
         </div>
       </section>
     </div>

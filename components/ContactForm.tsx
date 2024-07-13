@@ -6,6 +6,8 @@ import { Button } from "@nextui-org/button";
 import { Checkbox } from "@nextui-org/checkbox";
 import { Input, Textarea } from "@nextui-org/input";
 
+import { PrivacyPolicy } from "./PrivacyPolicy";
+
 export const ContactForm = () => {
   const [checkboxSelect, setCheckboxSelect] = useState<boolean>(true);
   const [formStatus, setFormStatus] = useState<string | null>(null);
@@ -50,6 +52,14 @@ export const ContactForm = () => {
     }
   };
 
+  const handleAgree = () => {
+    setCheckboxSelect(true);
+  };
+
+  const handleDisagree = () => {
+    setCheckboxSelect(false);
+  };
+
   return (
     <form
       className="flex flex-col gap-6 p-4 border border-gray-500 rounded-md"
@@ -86,7 +96,7 @@ export const ContactForm = () => {
       />
       <input name="pageUrl" type="hidden" value={pathname} />
       <Checkbox isSelected={checkboxSelect} onValueChange={setCheckboxSelect}>
-        Согласен(а) на обработку персональных данных
+        <PrivacyPolicy onAgree={handleAgree} onDisagree={handleDisagree} />
       </Checkbox>
       <Button
         color="primary"

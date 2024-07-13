@@ -116,8 +116,9 @@ export const Quiz = () => {
         title: "Какие услуги Вас интересуют?",
         content: (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-6">
+            <div className="space-y-4 py-6">
               <CheckboxGroup
+                orientation="horizontal"
                 value={formData.services}
                 onValueChange={handleCheckboxChange}
               >
@@ -141,6 +142,7 @@ export const Quiz = () => {
                 <Checkbox value="Email-рассылка">Email-рассылка</Checkbox>
               </CheckboxGroup>
               <Input
+                className="max-w-xs"
                 label="Свой вариант"
                 placeholder="Название услуг"
                 type="text"
@@ -164,6 +166,7 @@ export const Quiz = () => {
         title: "4 сайта которые вам нравятся больше всего",
         content: (
           <>
+            <p>Скопируйте URL-адреса сайтов из адресной строки браузера</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-6">
               {formData.websites.map((site, index) => (
                 <Input
@@ -232,9 +235,15 @@ export const Quiz = () => {
                 value={formData.timeframe}
                 onChange={handleRadioChange("timeframe")}
               >
-                <Radio value="до 3 месяцев">до 3 месяцев</Radio>
-                <Radio value="до 6 месяцев">до 6 месяцев</Radio>
-                <Radio value="до 1 года">до 1 года</Radio>
+                <Radio value="от 14 дней до 1 месяца">
+                  от 14 дней до 1 месяца
+                </Radio>
+                <Radio value="от 1 месяца до 6 месяцев">
+                  от 1 месяца до 6 месяцев
+                </Radio>
+                <Radio value="от 6 месяцев до 1 года">
+                  от 6 месяцев до 1 года
+                </Radio>
                 <Radio value="более 1 года">более 1 года</Radio>
               </RadioGroup>
             </div>
@@ -264,6 +273,7 @@ export const Quiz = () => {
             <div className="flex flex-col md:flex-row gap-6">
               <Input
                 isRequired
+                className="max-w-xs"
                 errorMessage={
                   isNameInvalid ? "Имя обязательно для заполнения" : ""
                 }
@@ -276,6 +286,7 @@ export const Quiz = () => {
               />
               <Input
                 isRequired
+                className="max-w-xs"
                 errorMessage={
                   isPhoneInvalid
                     ? "Номер телефона обязателен для заполнения"
@@ -307,6 +318,7 @@ export const Quiz = () => {
                 onChange={handleFileChange}
               />
             </div>
+            <div>{formStatus && <p>{formStatus}</p>}</div>
             <div className="flex justify-between">
               <Button
                 color="primary"
@@ -355,7 +367,6 @@ export const Quiz = () => {
   return (
     <Card className="p-4 min-h-96 flex flex-col justify-between">
       {renderStepContent()}
-      {formStatus && <p>{formStatus}</p>}
     </Card>
   );
 };
