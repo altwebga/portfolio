@@ -7,6 +7,8 @@ import { Radio, RadioGroup } from "@nextui-org/radio";
 import { Input, Textarea } from "@nextui-org/input";
 import { HiArrowSmRight, HiArrowSmLeft } from "react-icons/hi";
 
+import { PrivacyPolicy } from "./PrivacyPolicy";
+
 type FormDataType = {
   services: string[];
   customService: string;
@@ -37,6 +39,7 @@ export const Quiz = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isNameInvalid, setIsNameInvalid] = useState<boolean>(false);
   const [isPhoneInvalid, setIsPhoneInvalid] = useState<boolean>(false);
+  const [checkboxSelect, setCheckboxSelect] = useState<boolean>(true);
 
   const handleNext = () => setStep((prevStep) => prevStep + 1);
   const handlePrev = () => setStep((prevStep) => prevStep - 1);
@@ -108,6 +111,14 @@ export const Quiz = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleAgree = () => {
+    setCheckboxSelect(true);
+  };
+
+  const handleDisagree = () => {
+    setCheckboxSelect(false);
   };
 
   const renderStepContent = () => {
@@ -318,6 +329,15 @@ export const Quiz = () => {
                 onChange={handleFileChange}
               />
             </div>
+            <Checkbox
+              isSelected={checkboxSelect}
+              onValueChange={setCheckboxSelect}
+            >
+              <PrivacyPolicy
+                onAgree={handleAgree}
+                onDisagree={handleDisagree}
+              />
+            </Checkbox>
             <div>{formStatus && <p>{formStatus}</p>}</div>
             <div className="flex justify-between">
               <Button
@@ -330,6 +350,7 @@ export const Quiz = () => {
               <Button
                 color="primary"
                 endContent={<HiArrowSmRight className="h-4 w-4" />}
+                isDisabled={!checkboxSelect || isLoading}
                 isLoading={isLoading}
                 type="submit"
               >

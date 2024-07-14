@@ -1,4 +1,4 @@
-import { Service, Portfolio, Client } from "@/types";
+import { Service, Portfolio, Client, Post } from "@/types";
 
 const DEFAULT_ITEMS_PER_PAGE = 20; // значение по умолчанию
 
@@ -70,4 +70,36 @@ export async function getClients(): Promise<Client[]> {
   }
 
   return res.json();
+}
+
+export async function getPosts(
+  page: number = 1,
+  perPage: number = DEFAULT_ITEMS_PER_PAGE
+): Promise<{ posts: Post[]; totalPages: number }> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/posts?_fields=id,slug,title,content,date&per_page=${perPage}&page=${page}`
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  const posts = await res.json();
+  const totalPages = parseInt(res.headers.get("X-WP-TotalPages") || "0", 10);
+
+  return { posts, totalPages };
+}
+
+export async function getPost(slug: string): Promise<Post> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/posts?slug=${slug}&_fields=id,title,content,date,excerpt`
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  const data = await res.json();
+
+  return data[0];
 }

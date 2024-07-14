@@ -58,3 +58,20 @@ export type Client = {
   };
   client_logo_url: string;
 };
+
+export type Post = {
+  id: number;
+  slug: string;
+  title: {
+    rendered: string;
+  };
+  content: {
+    rendered: string;
+    protected: boolean;
+  };
+  date: string;
+  excerpt: {
+    rendered: string;
+    protected: boolean;
+  };
+};
