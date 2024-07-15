@@ -1,11 +1,11 @@
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
+import { Image } from "@nextui-org/image";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 import { SpinningCube } from "@/components/SpinningCube";
 import { title, subtitle } from "@/components/primitives";
-import { Clients } from "@/components/ClientCard";
-import { getServices } from "@/config/api";
+import { getServices, getClients } from "@/config/api";
 import { Service } from "@/types";
 import { IntegrationChart } from "@/components/IntegrationChart";
 import { DevelopmentSteps } from "@/components/DevelopmentSteps";
@@ -13,7 +13,15 @@ import { Quiz } from "@/components/Quiz";
 
 export default async function Home() {
   const { services } = await getServices();
+  const clients = await getClients();
+
   const sortedServices = services.sort((a, b) => a.id - b.id);
+
+  // Перемешиваем массив клиентов
+  const shuffledClients = clients.sort(() => 0.5 - Math.random());
+
+  // Берем первых 8 клиентов
+  const displayedClients = shuffledClients.slice(0, 8);
 
   return (
     <div className="px-4">
@@ -69,8 +77,23 @@ export default async function Home() {
       <section className="container mx-auto max-w-7xl py-12">
         <h2 className={title({ size: "sm" })}>Среди моих клиентов</h2>
         <p className={subtitle()}>Государственные и частные компании</p>
-        <div className="py-6">
-          <Clients />
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {displayedClients.map((client, index) => (
+            <div key={index} className="p-4">
+              <div className="flex flex-row gap-2 items-center">
+                <Image
+                  alt={client.name}
+                  className="w-12 h-auto"
+                  src={client.client_logo_url}
+                  width={60}
+                />
+                <div>
+                  <p>{client.name}</p>
+                  <p>{client.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
