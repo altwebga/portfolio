@@ -9,7 +9,6 @@ import { getServices, getClients } from "@/config/api";
 import { Service } from "@/types";
 import { IntegrationChart } from "@/components/IntegrationChart";
 import { DevelopmentSteps } from "@/components/DevelopmentSteps";
-import { Quiz } from "@/components/Quiz";
 
 export default async function Home() {
   const { services } = await getServices();
@@ -146,18 +145,6 @@ export default async function Home() {
             <div className="flex-1">
               <IntegrationChart />
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="container mx-auto max-w-7xl py-6">
-        <h1 className={title()}>Узнайте стоимость вашего проекта</h1>
-        <div className="flex flex-col md:flex-row gap-8 py-6">
-          <div className="w-full md:w-3/4">
-            <Quiz />
-          </div>
-          <div>
-            <p>Заполните форму ниже и получите бесплатную консультацию</p>
           </div>
         </div>
       </section>

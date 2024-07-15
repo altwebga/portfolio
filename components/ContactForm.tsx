@@ -71,9 +71,11 @@ export const ContactForm = () => {
           errorMessage={isNameInvalid ? "Имя обязательно для заполнения" : ""}
           isInvalid={isNameInvalid}
           label="Имя"
+          labelPlacement="outside"
           name="name"
           type="text"
           value={name}
+          variant="bordered"
           onChange={(e) => setName(e.target.value)}
         />
         <Input
@@ -83,16 +85,20 @@ export const ContactForm = () => {
           }
           isInvalid={isPhoneInvalid}
           label="Номер телефона"
+          labelPlacement="outside"
           name="phone"
           type="text"
           value={phone}
+          variant="bordered"
           onChange={(e) => setPhone(e.target.value)}
         />
       </div>
       <Textarea
         label="Ваше сообщение"
+        labelPlacement="outside"
         name="message"
         placeholder="Введите сюда ваше сообщение (не обязательно)"
+        variant="bordered"
       />
       <input name="pageUrl" type="hidden" value={pathname} />
       <Checkbox isSelected={checkboxSelect} onValueChange={setCheckboxSelect}>

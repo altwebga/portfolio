@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 import { HeaderMenu } from "@/config/menu";
-import { getServices, getCases } from "@/config/api";
+import { getServices, getCases, getPosts } from "@/config/api";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -15,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Получение данных через API
   const servicesData = await getServices();
   const casesData = await getCases();
+  const postsData = await getPosts();
 
   // Главная страница
   const mainPage = {
@@ -48,10 +49,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
+  // Динамические страницы блога
+  const dynamicPostPages = postsData.posts.map((item) => ({
+    url: `${baseUrl}/blog/${item.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   return [
     mainPage,
     ...sitePages,
     ...dynamicServicePages,
     ...dynamicPortfolioPages,
+    ...dynamicPostPages,
   ];
 }
