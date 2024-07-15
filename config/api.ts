@@ -77,7 +77,8 @@ export async function getPosts(
   perPage: number = DEFAULT_ITEMS_PER_PAGE
 ): Promise<{ posts: Post[]; totalPages: number }> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/posts?_fields=id,slug,title,content,date&per_page=${perPage}&page=${page}`
+    `${process.env.NEXT_PUBLIC_API_URL}/posts?_fields=id,title,date,slug,excerpt,categories,tags,category_names,tag_names&per_page=${perPage}&page=${page}`,
+    { next: { revalidate: 3600 } }
   );
 
   if (!res.ok) {
@@ -92,7 +93,7 @@ export async function getPosts(
 
 export async function getPost(slug: string): Promise<Post> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/posts?slug=${slug}&_fields=id,title,content,date,excerpt`
+    `${process.env.NEXT_PUBLIC_API_URL}/posts?slug=${slug}&_fields=id,title,content,date,slug,excerpt,categories,tags,category_names,tag_names`
   );
 
   if (!res.ok) {

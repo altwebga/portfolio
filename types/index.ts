@@ -74,4 +74,8 @@ export type Post = {
     rendered: string;
     protected: boolean;
   };
+  categories: number[];
+  tags: number[];
+  category_names: string[];
+  tag_names: string[];
 };
