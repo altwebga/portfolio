@@ -34,9 +34,12 @@ export async function getService(slug: string): Promise<Service> {
   return data[0];
 }
 
-export async function getCases(): Promise<Portfolio[]> {
+export async function getCases(
+  page: number = 1,
+  perPage: number = DEFAULT_ITEMS_PER_PAGE
+): Promise<Portfolio[]> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/portfolio?_fields=id,title,slug,featured_media,acf,featured_media_url,logo_url`
+    `${process.env.NEXT_PUBLIC_API_URL}/portfolio?_fields=id,title,slug,featured_media,acf,featured_media_url,logo_url&per_page=${perPage}&page=${page}`
   );
 
   if (!res.ok) {
