@@ -65,7 +65,7 @@ export function MobileMenu() {
           </ul>
         </nav>
         <SheetFooter className="mt-8">
-          <SocialNetwork />
+          <SocialNetwork color="primary" size="medium" />
         </SheetFooter>
       </SheetContent>
     </Sheet>
