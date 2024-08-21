@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 
-import { title } from "@/components/primitives";
-import { CallToAction } from "@/components/CallToAction";
-import { getPost } from "@/config/api";
-import ContentRenderer from "@/components/ContentRenderer";
+import { CallAction } from "@/components/call-action";
+import { getPost } from "@/config/fetch";
 
 // Функция для получения данных сервиса
 async function fetchPostData(slug: string) {
@@ -32,13 +30,11 @@ export default async function SingleServicePage({
 
   return (
     <div className="py-8">
-      <h1 className={title()}>{post.title.rendered}</h1>
+      <h1>{post.title.rendered}</h1>
       <div className="flex flex-col-reverse md:flex-row gap-4 py-6 justify-between">
-        <div>
-          <ContentRenderer content={post.content.rendered} />
-        </div>
+        <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
       </div>
-      <CallToAction />
+      <CallAction />
     </div>
   );
 }

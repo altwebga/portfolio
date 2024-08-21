@@ -1,13 +1,8 @@
-import type { Metadata } from "next";
+import Image from "next/image";
+import { Metadata } from "next";
+import { getService } from "@/config/fetch";
 
-import { Image } from "@nextui-org/image";
-
-import { title } from "@/components/primitives";
-import { CallToAction } from "@/components/CallToAction";
-import { getService } from "@/config/api";
-
-// Функция для получения данных сервиса
-async function fetchServiceData(slug: string) {
+async function getServiceData(slug: string) {
   return await getService(slug);
 }
 
@@ -16,8 +11,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const service = await fetchServiceData(params.slug);
-
+  const service = await getServiceData(params.slug);
   return {
     title: service.title.rendered,
     description: service.excerpt.rendered,
@@ -29,30 +23,29 @@ export async function generateMetadata({
   };
 }
 
-export default async function SingleServicePage({
+export default async function ServiceSinglePage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const service = await fetchServiceData(params.slug);
+  const service = await getServiceData(params.slug);
 
   return (
-    <div className="py-8">
-      <h1 className={title()}>{service.title.rendered}</h1>
-      <div className="flex flex-col-reverse md:flex-row gap-4 py-6 justify-between">
-        <div>
-          <div
-            dangerouslySetInnerHTML={{ __html: service.excerpt.rendered }}
-            className="max-w-2xl"
-          />
-          <div
-            dangerouslySetInnerHTML={{ __html: service.content.rendered }}
-            className="max-w-2xl"
-          />
-        </div>
-        <Image src={service.featured_media_url} width={400} />
+    <div className="flex flex-col md:flex-row gap-8 mb-8 justify-center">
+      <div>
+        <h1 className="py-8">{service.title.rendered}</h1>
+        <div
+          dangerouslySetInnerHTML={{ __html: service.content.rendered }}
+          className="space-y-4"
+        />
       </div>
-      <CallToAction />
+      <Image
+        alt={service.title.rendered}
+        className="object-contain"
+        height={500}
+        src={service.featured_media_url}
+        width={500}
+      />
     </div>
   );
 }

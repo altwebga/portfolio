@@ -1,7 +1,14 @@
+import { CallAction } from "@/components/call-action";
+
 export default function ServicesLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="container mx-auto max-w-7xl px-4">{children}</div>;
+  return (
+    <div className="container mx-auto mt-8">
+      {children}
+      <CallAction />
+    </div>
+  );
 }

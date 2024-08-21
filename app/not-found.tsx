@@ -1,24 +1,14 @@
-import { Link } from "@nextui-org/link";
-import { Button } from "@nextui-org/button";
-
-import { title } from "@/components/primitives";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
     <div className="bg-hero-grid h-full flex items-center justify-center">
       <div className="text-center space-y-6">
-        <h2 className={title({ color: "violet", size: "lg" })}>
-          Страница не найдена
-        </h2>
+        <h1>Страница не найдена</h1>
         <p>Не удалось найти запрашиваемый ресурс</p>
-        <Button
-          as={Link}
-          className="w-48"
-          color="primary"
-          href="/"
-          variant="solid"
-        >
-          На главную
+        <Button asChild>
+          <Link href="/">На главную</Link>
         </Button>
       </div>
     </div>

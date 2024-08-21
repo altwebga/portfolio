@@ -1,16 +1,16 @@
-import { SocialLink } from "./SocialLink";
+import { SocialNetwork } from "./social-network";
+import { Separator } from "./ui/separator";
 
-export const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
+export function Footer() {
   return (
-    <footer className="border-t-1 border-gray-500">
-      <div className="flex flex-col items-center py-4">
-        <SocialLink color="foreground" size="medium" />
-        <div className="text-sm mt-2">
-          &copy; {currentYear} seomix. All rights reserved.
-        </div>
+    <footer className="bg-background mt-8">
+      <Separator />
+      <div className="container flex flex-col items-center justify-between px-4 py-6 mx-auto space-y-4 sm:px-6 lg:px-8">
+        <SocialNetwork color="primary" size="medium" />
+        <p className="text-sm text-center text-foreground">
+          © 2022 SeoMix. All rights reserved.
+        </p>
       </div>
     </footer>
   );
-};
+}

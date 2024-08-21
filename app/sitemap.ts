@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
-import { HeaderMenu } from "@/config/menu";
-import { getServices, getCases, getPosts } from "@/config/api";
+import { navLinks } from "@/config/site";
+import { getServices, getCases, getPosts } from "@/config/fetch";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -26,8 +26,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   };
 
   // Статические страницы
-  const sitePages = HeaderMenu.map((page) => ({
-    url: `${baseUrl}/${page.link}`,
+  const sitePages = navLinks.map((page) => ({
+    url: `${baseUrl}${page.href}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.8,

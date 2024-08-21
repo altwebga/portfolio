@@ -14,6 +14,7 @@ export default function robots(): MetadataRoute.Robots {
         "/_next/",
         "/static/",
         "/config/",
+        "/privacy-policy/",
       ],
     },
     sitemap: `${baseUrl}/sitemap.xml`,

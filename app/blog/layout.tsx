@@ -3,5 +3,5 @@ export default function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="container mx-auto max-w-7xl px-4">{children}</div>;
+  return <div className="container mx-auto mt-8">{children}</div>;
 }

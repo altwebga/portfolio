@@ -1,39 +1,26 @@
 import { Metadata } from "next";
-
-import { title } from "@/components/primitives";
-import { PortfolioCard } from "@/components/PortfolioCard";
-import NoImage from "@/public/image/image_not_found.webp";
-import { getCases } from "@/config/api";
-import { Portfolio } from "@/types";
+import { PortfolioCard } from "@/components/portfolio-card";
+import { getCases } from "@/config/fetch";
 
 export const metadata: Metadata = {
-  title: "Портфолио",
+  title: "Мои работы",
   description:
-    "Портфолио разработчика сайтов и мобильных приложений в Горно-Алтайске.",
-  keywords:
-    "Разработка, сайтов, разработка мобильных приложений, продвижение сайтов",
+    "Разработка сайтов в Горно-Алтайске по низким ценам, частный вебмастер.",
 };
 
 export default async function PortfolioPage() {
-  const data: Portfolio[] = await getCases();
-
-  const portfolioWithImages = data.map((item: Portfolio) => ({
-    ...item,
-    featuredMediaUrl: item.featured_media_url || NoImage.src,
-    logoUrl: item.logo_url || NoImage.src,
-    businessCategory: item.acf.businessCategory,
-  }));
+  const casesData = await getCases();
 
   return (
-    <div className="py-8">
-      <h1 className={title()}>Мои работы</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
-        {portfolioWithImages.map((item: any) => (
+    <div>
+      <h1>Мои работы</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        {casesData.map((item) => (
           <PortfolioCard
             key={item.id}
-            businessCategory={item.businessCategory}
-            image={item.featuredMediaUrl}
-            logo={item.logoUrl}
+            businessCategory={item.acf.businessCategory}
+            image={item.featured_media_url}
+            logo={item.logo_url}
             slug={item.slug}
             title={item.title.rendered}
           />
