@@ -14,17 +14,19 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { YandexCaptcha } from "@/components/YandexCaptcha";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { sendFormSMTP } from "@/actions/sendFormSMTP";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "localhost:3000";
+const phoneRegex = /^(?:\+7|8)\s?\(?\d{3}\)?\s?\d{3}-?\d{2}-?\d{2}$/;
 
 const FormSchema = z.object({
   name: z.string().min(2, {
     message: "Имя должно содержать хотя бы два символа.",
   }),
-  phone: z.string(),
-  url: z.string(),
+  phone: z
+    .string()
+    .regex(phoneRegex, { message: "Некорректный номер телефона" }),
+  url: z.string().url(),
 });
 
 type FormData = z.infer<typeof FormSchema>;
@@ -35,11 +37,16 @@ export function FeedbackForm({ onSuccess }: { onSuccess: () => void }) {
     defaultValues: {
       name: "",
       phone: "",
-      url: baseUrl,
+      url: "",
     },
   });
 
   const [isCaptchaVerified, setIsCaptchaVerified] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Устанавливаем текущий URL страницы
+    form.setValue("url", window.location.href);
+  }, [form]);
 
   async function onSubmit(data: FormData) {
     try {
