@@ -1,31 +1,33 @@
 import { Metadata } from "next";
-import { PortfolioCard } from "@/components/portfolio-card";
-import { getCases } from "@/config/fetch";
+import { PortfolioCard } from "@/components/PortfolioCard";
 
 export const metadata: Metadata = {
-  title: "Мои работы",
+  title: "Портфолио",
   description:
-    "Разработка сайтов в Горно-Алтайске по низким ценам, частный вебмастер.",
+    "Портфолио частного вебмастера в Горно-Алтайске. Разработка сайтов, продвижение, SEO оптимизация. Примеры работ.",
+  keywords:
+    "разработка сайтов, заказать, мобильное приложение, продвижение сайтов, поддержка, обслуживание, создание сайтов, seo, seo оптимизация",
+  openGraph: {
+    title: "SEOMIX",
+    description: "Разработка и продвижение сайтов.",
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/portfolio`,
+    siteName: "SEOMIX",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/images/og.png`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "ru",
+  },
 };
 
-export default async function PortfolioPage() {
-  const casesData = await getCases();
-
+export default function PortfolioPage() {
   return (
     <div>
       <h1>Мои работы</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-        {casesData.map((item) => (
-          <PortfolioCard
-            key={item.id}
-            businessCategory={item.acf.businessCategory}
-            image={item.featured_media_url}
-            logo={item.logo_url}
-            slug={item.slug}
-            title={item.title.rendered}
-          />
-        ))}
-      </div>
+      <PortfolioCard />
     </div>
   );
 }

@@ -1,25 +1,33 @@
-import HeroImage from "@/public/images/hero.svg";
-import Image from "next/image";
-import { Button } from "./ui/button";
 import Link from "next/link";
-import { PopupForm } from "./popup-form";
+import { Button } from "./ui/button";
+import { ContactForm } from "./ContactForm";
+
 export function Hero() {
   return (
-    <section className="bg-hero-bg bg-contain bg-no-repeat w-full h-screen flex flex-col justify-center">
-      <div className="container mx-auto flex flex-col md:flex-row gap-4 items-center justify-between">
-        <div className="space-y-8 md:w-1/2">
-          <h1>
+    <section className="bg-bg-grid bg-contain bg-no-repeat h-[80vh] flex flex-col items-center justify-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h1 className="text-4xl md:text-6xl font-bold">
             Разработка и продвижение сайтов{" "}
-            <span className="text-blue-500">в Горно-Алтайске</span>
+            <span className="text-sky-500">в Горно-Алтайске</span>
           </h1>
-          <div className="flex gap-4 items-center pt-4">
-            <PopupForm />
-            <Button asChild className="w-40" variant="outline">
-              <Link href="/portfolio">Примеры работ</Link>
+          <p>Адекватный креатив и технологичные решения для вашего бизнеса.</p>
+          <div className="flex gap-4 mt-8">
+            <ContactForm />
+            <Button variant="outline" asChild>
+              <Link href="/portfolio">Портфолио</Link>
             </Button>
           </div>
         </div>
-        <Image src={HeroImage} alt="Hero" />
+        <div className="hidden dark:block">
+          <video
+            src="/videos/hero-3.webm" // Укажите путь к вашему видео
+            loop // Видео будет зациклено
+            autoPlay // Видео будет запускаться автоматически
+            muted // Отключает звук (нужно для автозапуска во многих браузерах)
+            className="absolute top-0 right-0 w-full h-full object-cover z-[-1]"
+          />
+        </div>
       </div>
     </section>
   );

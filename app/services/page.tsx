@@ -1,40 +1,33 @@
 import { Metadata } from "next";
-import { ServicesCard } from "@/components/services-card";
-import { getServices } from "@/config/fetch";
+import { ServicesCard } from "@/components/ServicesCard";
 
 export const metadata: Metadata = {
   title: "Услуги",
   description:
-    "Предлагаю полный спектр услуг по разработке и продвижению сайтов. Независимо от масштаба проекта, будь то небольшой лендинг или крупный корпоративный сайт",
+    "Услуги частного вебмастера в Горно-Алтайске. Разработка сайтов, продвижение, SEO оптимизация. Низкие цены и высокое качество.",
+  keywords:
+    "разработка сайтов, заказать, мобильное приложение, продвижение сайтов, поддержка, обслуживание, создание сайтов, seo, seo оптимизация",
+  openGraph: {
+    title: "SEOMIX",
+    description: "Разработка и продвижение сайтов.",
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/services`,
+    siteName: "SEOMIX",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/images/og.png`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "ru",
+  },
 };
 
-export default async function ServicesPage() {
-  const { services } = await getServices();
-
+export default function ServicesPage() {
   return (
     <div>
       <h1>Услуги</h1>
-      <p>
-        Я предлагаю полный спектр услуг по разработке и продвижению сайтов.
-        Независимо от масштаба проекта, будь то небольшой лендинг или крупный
-        корпоративный сайт, я готов создать уникальный дизайн и обеспечить его
-        высокую производительность. Моей целью является помочь вашему бизнесу
-        достичь успеха в онлайн-пространстве через эффективные маркетинговые
-        стратегии и качественную техническую реализацию.
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8">
-        {services.map((item) => (
-          <ServicesCard
-            key={item.id}
-            excerpt={item.excerpt.rendered}
-            image={item.featured_media_url}
-            price={item.acf.price}
-            slug={item.slug}
-            title={item.title.rendered}
-          />
-        ))}
-      </div>
+      <ServicesCard />
     </div>
   );
 }

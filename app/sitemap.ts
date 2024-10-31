@@ -1,10 +1,10 @@
 import { MetadataRoute } from "next";
 
-import { navLinks } from "@/config/site";
-import { getServices, getCases, getPosts } from "@/config/fetch";
+import { navLinks } from "@/lib/siteConfig";
+import { getPosts } from "@/lib/api";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "localhost:3000";
 
   if (!baseUrl) {
     throw new Error(
@@ -13,9 +13,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // Получение данных через API
-  const servicesData = await getServices();
-  const casesData = await getCases();
-  const postsData = await getPosts();
+  const servicesData = await getPosts(4, 21);
+  const casesData = await getPosts(3, 21);
+  const postsData = await getPosts(2, 21);
 
   // Главная страница
   const mainPage = {
@@ -34,8 +34,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Динамические страницы услуг
-  const dynamicServicePages = servicesData.services.map((service) => ({
-    url: `${baseUrl}/services/${service.slug}`,
+  const dynamicServicePages = servicesData.map((item) => ({
+    url: `${baseUrl}/services/${item.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -50,7 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Динамические страницы блога
-  const dynamicPostPages = postsData.posts.map((item) => ({
+  const dynamicPostPages = postsData.map((item) => ({
     url: `${baseUrl}/blog/${item.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,

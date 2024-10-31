@@ -1,34 +1,41 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
-import { Inter as FontSans } from "next/font/google";
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
-import { siteMetaData } from "@/config/site";
-import OGImage from "@/public/images/opengraph-image.png";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
+const geistSans = localFont({
+  src: "../public/fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+});
+const geistMono = localFont({
+  src: "../public/fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
 });
 
 export const metadata: Metadata = {
-  metadataBase: siteMetaData.metadataBase,
-  title: {
-    default: siteMetaData.title,
-    template: `%s - ${siteMetaData.title}`,
-  },
-  description: siteMetaData.description,
-  icons: {
-    icon: "/favicon.ico",
-  },
-  keywords: siteMetaData.keywords,
+  title: "SEOMIX",
+  description:
+    "Разработка сайтов в Горно-Алтайске по низким ценам, частный вебмастер.",
+  keywords:
+    "разработка сайтов, заказать, мобильное приложение, продвижение сайтов, поддержка, обслуживание, создание сайтов, seo, seo оптимизация",
   openGraph: {
-    title: siteMetaData.title,
-    description: siteMetaData.description,
-    images: OGImage.src,
+    title: "SEOMIX",
+    description: "Разработка и продвижение сайтов.",
+    url: "https://seomix.ru",
+    siteName: "SEOMIX",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/images/og.png`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "ru",
   },
 };
 
@@ -40,23 +47,20 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          <div className="h-screen flex flex-col justify-between">
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Toaster />
-            <Footer />
-          </div>
+          <Header />
+          <main className="flex-grow px-4 pt-8 container mx-auto">
+            {children}
+          </main>
+          <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

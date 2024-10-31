@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "api.seomix.ru",
+        hostname: "api.webga.ru",
       },
       {
         protocol: "https",
