@@ -28,12 +28,14 @@ export function NavMenu({ className }: NavMenuProps) {
       <SheetTrigger className="flex items-center gap-2 border p-2 rounded-md md:hidden">
         {open ? <X /> : <Menu />} Меню
       </SheetTrigger>
-      <SheetContent side={"left"} className="w-[400px] md:w-[840px]">
+      <SheetContent side={"left"}>
         <SheetHeader>
-          <SheetTitle>seomix.</SheetTitle>
+          <SheetTitle className="text-left">seomix.</SheetTitle>
           <SheetDescription></SheetDescription>
           <nav className="w-full">
-            <ul className={cn("list-none", className)}>
+            <ul
+              className={cn("list-none text-left text-lg space-y-4", className)}
+            >
               {navLinks.map((link) => (
                 <li
                   key={link.id}

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { NavMenu } from "./NavMenu";
-import { UserAuthMenu } from "./UserAuthMenu";
+// import { UserAuthMenu } from "./UserAuthMenu";
 import { DesktopNav } from "./DesktopNav";
 
 export function Header() {
@@ -22,7 +22,7 @@ export function Header() {
           <DesktopNav />
         </div>
         <div className="flex items-center gap-4">
-          <UserAuthMenu />
+          {/* <UserAuthMenu /> */}
           <ThemeToggle />
         </div>
       </div>
