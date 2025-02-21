@@ -45,10 +45,13 @@ export function UserNav({ className }: UserNavProps) {
         <DropdownMenuLabel>{session?.user?.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link href="dashboard/profile">Профиль</Link>
+          <Link href="/dashboard/profile">Профиль</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
+        {session?.user?.role === "ADMIN" && (
+          <DropdownMenuItem>
+            <Link href="/admin">Админ</Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/" })}>
           Выйти
