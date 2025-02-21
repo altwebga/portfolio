@@ -12,7 +12,11 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
-export function UserNav() {
+type UserNavProps = {
+  className?: string;
+};
+
+export function UserNav({ className }: UserNavProps) {
   const { data: session } = useSession();
   if (!session) {
     return (
@@ -26,7 +30,7 @@ export function UserNav() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost">
+        <Button variant="ghost" className={className}>
           <Avatar className="h-8 w-8">
             <AvatarImage
               src={session?.user?.image || ""}

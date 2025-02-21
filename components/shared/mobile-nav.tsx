@@ -12,7 +12,7 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { UserNav } from "./user-nav";
 
