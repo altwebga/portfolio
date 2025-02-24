@@ -1,7 +1,7 @@
 import { getPost } from "@/actions/get-posts";
 import Image from "next/image";
 
-export default async function Page({
+export default async function SinglePostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
