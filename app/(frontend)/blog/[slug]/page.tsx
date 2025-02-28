@@ -1,3 +1,7 @@
+import { promises as fs } from "fs";
+import path from "path";
+import "highlight.js/styles/github-dark.css";
+
 export default async function SinglePostPage({
   params,
 }: {
@@ -11,7 +15,9 @@ export default async function SinglePostPage({
   return (
     <div>
       <h1>{frontmatter.title}</h1>
-      <Post />
+      <div className="max-w-3xl pt-4">
+        <Post />
+      </div>
     </div>
   );
 }
@@ -39,3 +45,20 @@ export async function generateMetadata({
     },
   };
 }
+
+export async function generateStaticParams() {
+  // Путь к папке с MDX-файлами
+  const directoryPath = path.join(process.cwd(), "content/posts");
+
+  // Получаем список всех MDX-файлов
+  const files = (await fs.readdir(directoryPath)).filter((file) =>
+    file.endsWith(".mdx")
+  );
+  return [
+    ...files.map((file) => ({
+      slug: file.split(".")[0],
+    })),
+  ];
+}
+
+export const dynamicParams = false;

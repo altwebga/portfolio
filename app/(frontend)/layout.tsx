@@ -9,7 +9,7 @@ export default function FrontEndLayout({
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="container px-4 mx-auto flex-grow">{children}</main>
+      <main className="container p-4 mx-auto grow">{children}</main>
       <Footer />
     </div>
   );

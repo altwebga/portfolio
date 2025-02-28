@@ -45,7 +45,7 @@ export function MobileNav() {
     <div className="md:hidden">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button variant={"ghost"}> {open ? <X /> : <Menu />} Меню</Button>
+          <Button variant={"outline"}> {open ? <X /> : <Menu />} Меню</Button>
         </SheetTrigger>
         <SheetContent side="left">
           <SheetHeader>

@@ -1,3 +1,6 @@
+import { promises as fs } from "fs";
+import path from "path";
+
 export default async function SingleServicePage({
   params,
 }: {
@@ -39,3 +42,19 @@ export async function generateMetadata({
     },
   };
 }
+export async function generateStaticParams() {
+  // Путь к папке с MDX-файлами
+  const directoryPath = path.join(process.cwd(), "content/services");
+
+  // Получаем список всех MDX-файлов
+  const files = (await fs.readdir(directoryPath)).filter((file) =>
+    file.endsWith(".mdx")
+  );
+  return [
+    ...files.map((file) => ({
+      slug: file.split(".")[0],
+    })),
+  ];
+}
+
+export const dynamicParams = false;
