@@ -1,14 +1,15 @@
-import { Footer } from "@/components/shared/footer";
 import { Header } from "@/components/shared/header";
-export default function FrontendLayout({
+import { Footer } from "@/components/shared/footer";
+
+export default function FrontEndLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="container mx-auto px-4 mt-4 flex-grow">{children}</main>
+      <main className="container px-4 mx-auto flex-grow">{children}</main>
       <Footer />
     </div>
   );

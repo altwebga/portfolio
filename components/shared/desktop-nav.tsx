@@ -3,7 +3,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { navItems } from "./mobile-nav";
-import { UserNav } from "./user-nav";
 
 export function DesktopNav() {
   const pathname = usePathname();
@@ -28,7 +27,6 @@ export function DesktopNav() {
           ))}
         </ul>
       </nav>
-      <UserNav />
     </div>
   );
 }

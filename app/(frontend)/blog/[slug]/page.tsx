@@ -1,11 +1,11 @@
-export default async function SingleServicePage({
+export default async function SinglePostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const slug = (await params).slug;
   const { default: Post, frontmatter } = await import(
-    `@/content/services/${slug}.mdx`
+    `@/content/posts/${slug}.mdx`
   );
 
   return (
@@ -22,7 +22,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const slug = (await params).slug;
-  const { frontmatter } = await import(`@/content/services/${slug}.mdx`);
+  const { frontmatter } = await import(`@/content/posts/${slug}.mdx`);
   return {
     title: frontmatter.title,
     description: frontmatter.description,

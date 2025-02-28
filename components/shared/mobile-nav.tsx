@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { UserNav } from "./user-nav";
 
 export const navItems = [
   {
@@ -46,13 +45,11 @@ export function MobileNav() {
     <div className="md:hidden">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button> {open ? <X /> : <Menu />} Меню</Button>
+          <Button variant={"ghost"}> {open ? <X /> : <Menu />} Меню</Button>
         </SheetTrigger>
         <SheetContent side="left">
           <SheetHeader>
-            <SheetTitle className="text-left">
-              <UserNav />
-            </SheetTitle>
+            <SheetTitle className="text-left"></SheetTitle>
             <SheetDescription className="text-left px-4">Меню</SheetDescription>
             <nav className="text-left p-4">
               <ul className="list-none space-y-4">
