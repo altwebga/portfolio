@@ -38,7 +38,9 @@ export default async function ServicesPage() {
                 {/* Контейнер для изображения */}
                 <div className="absolute inset-0 w-full h-full">
                   <Image
-                    src={service.frontmatter.image || "/placeholder-image.jpg"} // Замените на fallback изображение
+                    src={
+                      service.frontmatter.image || "/images/placeholder.min.svg"
+                    }
                     alt={service.frontmatter.title || "Service Image"}
                     fill
                     className="object-cover"

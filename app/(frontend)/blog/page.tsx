@@ -38,7 +38,9 @@ export default async function BlogPage() {
                 {/* Контейнер для изображения */}
                 <div className="absolute inset-0 w-full h-full">
                   <Image
-                    src={post.frontmatter.image || "/placeholder-image.jpg"} // Замените на fallback изображение
+                    src={
+                      post.frontmatter.image || "/images/placeholder.min.svg"
+                    } // Замените на fallback изображение
                     alt={post.frontmatter.title || "post Image"}
                     fill
                     className="object-cover"

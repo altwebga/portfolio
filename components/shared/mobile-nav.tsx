@@ -11,9 +11,11 @@ import {
   SheetTitle,
   SheetTrigger,
   SheetClose,
+  SheetFooter,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "./theme-toggle";
 
 export const navItems = [
   {
@@ -71,6 +73,9 @@ export function MobileNav() {
               </ul>
             </nav>
           </SheetHeader>
+          <SheetFooter>
+            <ThemeToggle />
+          </SheetFooter>
         </SheetContent>
       </Sheet>
     </div>
