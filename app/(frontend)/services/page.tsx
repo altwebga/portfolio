@@ -50,7 +50,7 @@ export default async function ServicesPage() {
                   />
                 </div>
                 {/* Размытый футер */}
-                <CardFooter className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 backdrop-blur-sm px-4 py-6">
+                <CardFooter className="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-sm px-4 py-6">
                   <div className="flex justify-between items-center w-full">
                     <h4 className="text-white font-semibold">
                       {service.frontmatter.title}
