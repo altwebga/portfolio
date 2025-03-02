@@ -11,8 +11,10 @@ const tildaSans = localFont({
   weight: "100 900",
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://seomix.ru"),
+  metadataBase: new URL(baseUrl),
   title: {
     default: "SEOMIX",
     template: "%s | SEOMIX",

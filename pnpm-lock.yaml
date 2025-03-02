@@ -32,6 +32,9 @@ importers:
       '@types/mdx':
         specifier: ^2.0.13
         version: 2.0.13
+      '@yandex/smart-captcha':
+        specifier: ^2.7.0
+        version: 2.7.0(react@19.0.0)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -745,6 +748,11 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
+
+  '@yandex/smart-captcha@2.7.0':
+    resolution: {integrity: sha512-zck9u5fq5saNdbiJt7jPEyf3Pr4wr1ToBGu20qfE8u85sfUbXCd/kYOV3WWTO5eluQupw5sF0nwwxOt2PFJcfA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -2934,6 +2942,10 @@ snapshots:
       eslint-visitor-keys: 4.2.0
 
   '@ungap/structured-clone@1.3.0': {}
+
+  '@yandex/smart-captcha@2.7.0(react@19.0.0)':
+    dependencies:
+      react: 19.0.0
 
   acorn-jsx@5.3.2(acorn@8.14.0):
     dependencies:
