@@ -52,7 +52,7 @@
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
+  --primary: oklch(0.432 0.232 292.759);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
@@ -88,7 +88,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.141 0.005 285.823);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
+  --primary: oklch(0.606 0.25 292.717);
   --primary-foreground: oklch(0.21 0.006 285.885);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
@@ -124,28 +124,25 @@
     @apply bg-background text-foreground font-[family-name:var(--font-tilda-sans)];
   }
   h1 {
-    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-2;
   }
   h2 {
-    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-2;
   }
   h3,
   label {
-    @apply scroll-m-20 text-2xl mt-4 font-semibold tracking-tight;
+    @apply scroll-m-20 text-2xl mt-4 font-semibold tracking-tight mb-2;
   }
   h4 {
-    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+    @apply scroll-m-20 text-xl font-semibold tracking-tight mb-2;
   }
-  p {
+  /* p {
     @apply leading-7 [&:not(:first-child)]:mt-6 text-lg;
-  }
+  } */
   a {
     @apply font-medium decoration-primary decoration-2;
   }
   blockquote {
     @apply mt-6 border-l-2 pl-6 italic;
-  }
-  code {
-    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
   }
 }

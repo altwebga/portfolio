@@ -1,28 +1,23 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { navItems } from "./mobile-nav";
+import { Button } from "../ui/button";
 
 export function DesktopNav() {
   const pathname = usePathname();
   return (
     <div className="hidden md:flex items-center gap-8">
       <nav>
-        <ul className="list-none flex items-center gap-8">
+        <ul className="list-none flex items-center gap-2">
           {navItems.map((item) => (
             <li key={item.href}>
-              <Link
-                href={item.href}
-                className={cn(
-                  "cursor-pointer font-medium transition-colors hover:text-primary",
-                  pathname === item.href
-                    ? "text-primary underline underline-offset-8"
-                    : "text-muted-foreground"
-                )}
+              <Button
+                asChild
+                variant={pathname === item.href ? "outline" : "ghost"}
               >
-                {item.title}
-              </Link>
+                <Link href={item.href}>{item.title}</Link>
+              </Button>
             </li>
           ))}
         </ul>
