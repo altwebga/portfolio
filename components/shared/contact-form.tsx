@@ -80,12 +80,10 @@ export function ContactForm({ className }: ContactFormProps) {
             </FormItem>
           )}
         />
-        <YandexCaptcha onVerify={() => setIsCaptchaVerified(true)} />
-        <Button
-          disabled={!isCaptchaVerified}
-          type="submit"
-          className="w-full mt-4"
-        >
+        <div className="py-4">
+          <YandexCaptcha onVerify={() => setIsCaptchaVerified(true)} />
+        </div>
+        <Button disabled={!isCaptchaVerified} type="submit" className="w-full">
           Отправить
         </Button>
       </form>
