@@ -7,7 +7,15 @@ import rehypeHighlight from "rehype-highlight";
 const nextConfig = {
   // Configure `pageExtensions` to include markdown and MDX files
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
-  // Optionally, add any other Next.js config below
+  images: {
+    dangerouslyAllowSVG: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "img.shields.io",
+      },
+    ],
+  },
 };
 
 const withMDX = createMDX({

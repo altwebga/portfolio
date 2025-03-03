@@ -43,7 +43,7 @@ export default async function ServicesPage() {
                     }
                     alt={service.frontmatter.title || "Service Image"}
                     fill
-                    className="object-cover"
+                    className="object-cover aspect-square"
                     sizes="(max-width: 768px) 100vw"
                     priority={false}
                     quality={75}

@@ -6,15 +6,17 @@ export function Hero() {
     <section>
       <div className="container mx-auto grid md:grid-cols-2 items-center gap-4 h-[80vh] bg-[url(/images/hero-bg.min.svg)]">
         <div className="px-4">
-          <h1 className="text-5xl font-bold">
+          <h1 className="text-4xl md:text-5xl font-bold">
             Разработка и продвижение сайтов
             <br />
-            <span className="text-primary text-7xl">в Горно-Алтайске</span>
+            <span className="text-4xl md:text-7xl bg-gradient-to-r from-fuchsia-600 to-blue-600 bg-clip-text text-transparent">
+              в Горно-Алтайске
+            </span>
           </h1>
           <p>адекватный креатив и технологичные решения для вашего бизнеса</p>
           <div className="flex gap-4 mt-8">
             <ContactDialog />
-            <Button variant="outline" asChild>
+            <Button variant="outline" asChild className="w-48">
               <Link href="/portfolio">Портфолио</Link>
             </Button>
           </div>

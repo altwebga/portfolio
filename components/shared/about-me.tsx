@@ -4,11 +4,12 @@ export function AboutMe() {
   return (
     <div className="flex flex-col md:flex-row py-6 justify-between items-center h-full gap-8">
       <Image
-        className="rounded-md shadow-lg w-auto h-auto"
+        className="rounded-md shadow-lg aspect-3/4"
         src={"/images/me.jpg"}
-        height={300}
-        width={300}
+        width={400}
+        height={400}
         alt="Photo"
+        priority={true}
       />
       <div>
         <h3>Привет, меня зовут Константин.</h3>

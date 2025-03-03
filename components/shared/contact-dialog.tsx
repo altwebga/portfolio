@@ -30,7 +30,9 @@ export function ContactDialog() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline">Начать проект</Button>
+          <Button variant={"default"} className="w-48">
+            Начать проект
+          </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>

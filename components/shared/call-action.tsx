@@ -9,7 +9,7 @@ import { ContactDialog } from "./contact-dialog";
 
 export function CallAction() {
   return (
-    <Card className="bg-[url(/images/pattern.min.svg)] bg-no-repeat bg-top min-h-[25vh] my-8">
+    <Card className="bg-[url(/images/pattern.min.svg)] bg-no-repeat bg-top min-h-[25vh] my-8 container mx-auto px-4">
       <CardHeader>
         <CardTitle className="text-3xl">Обсудим ваш проект?</CardTitle>
       </CardHeader>

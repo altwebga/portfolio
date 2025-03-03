@@ -46,6 +46,8 @@ export default async function PortfolioPage() {
                     alt={item.frontmatter.title}
                     width={300}
                     height={300}
+                    className="aspect-4/3 w-auto h-auto"
+                    priority
                   />
                 </CardHeader>
                 <CardFooter>{item.frontmatter.title}</CardFooter>
