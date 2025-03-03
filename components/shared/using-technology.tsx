@@ -114,33 +114,31 @@ export function UsingTechnology() {
   return (
     <section className="container mx-auto px-4">
       <h2>Современные технологии</h2>
-      <div className="grid md:grid-flow-col auto-cols-max grid-cols-1 gap-4 mt-8">
-        <div className="row-span-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
           <p>
             Использую только самые современные технологии, никаких шаблонных
             решений и конструкторов.
           </p>
           <p>Вы получите:</p>
-          <ul>
+          <ul className="list-decimal pl-8">
             <li>Полное техническое задание.</li>
             <li>Индивидуально разработанные макеты дизайна.</li>
             <li>Чистый и оптимизированный исходный код приложения.</li>
             <li>Полную техническая документацию и рабочие инструкции.</li>
           </ul>
         </div>
-        <div className="max-w-sm row-span-1">
-          <div className="flex flex-wrap gap-2 items-center justify-center">
-            {techBadges.map((badge) => (
-              <Image
-                key={badge.id}
-                src={badge.image}
-                alt={badge.title}
-                width={56}
-                height={56}
-                className="w-auto h-auto"
-              />
-            ))}
-          </div>
+        <div className="flex flex-wrap gap-2 items-center justify-center">
+          {techBadges.map((badge) => (
+            <Image
+              key={badge.id}
+              src={badge.image}
+              alt={badge.title}
+              width={56}
+              height={56}
+              className="w-auto h-auto"
+            />
+          ))}
         </div>
       </div>
     </section>

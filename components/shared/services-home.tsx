@@ -27,8 +27,8 @@ const serviceList = [
 export function ServicesHome() {
   return (
     <section className="container mx-auto px-4 min-h-[40vh]]">
-      <h2>Услуги</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+      <h2 className="text-4xl md:text-5xl font-bold">Услуги</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-top">
         <div className="flex flex-col gap-4">
           <p>
             Работайте с единым подрядчиком для всех Ваших интернет-активностей.
@@ -36,12 +36,6 @@ export function ServicesHome() {
             сети сосредоточена в одних руках, контроль результатов становится
             максимально прозрачным.
           </p>
-          <Image
-            src={"/images/services.png"}
-            alt="services"
-            width={800}
-            height={800}
-          />
         </div>
         <div className="flex flex-col gap-4">
           {serviceList.map((service, index) => (
