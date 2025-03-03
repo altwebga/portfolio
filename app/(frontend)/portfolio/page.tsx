@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardFooter } from "@/components/ui/card";
+import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 
 export default async function PortfolioPage() {
   // Путь к папке с MDX-файлами
@@ -24,44 +24,31 @@ export default async function PortfolioPage() {
     })
   );
 
+  // Сортируем portfolio по дате created (новые сверху)
+  const sortedPortfolio = portfolio.sort((a, b) => {
+    return b.frontmatter.created.localeCompare(a.frontmatter.created);
+  });
+
   return (
     <div>
-      <h1>Наши услуги</h1>
+      <h1>Портфолио</h1>
       <div className="py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {portfolio.map((item) => (
+          {sortedPortfolio.map((item) => (
             <Link
               href={`/portfolio/${item.filename.split(".")[0]}`}
               key={item.filename}
             >
-              <Card className="relative shadow-md overflow-hidden h-96 transition delay-50 duration-150 ease-in-out hover:-translate-y-1 hover:scale-105">
-                {/* Контейнер для изображения */}
-                <div className="absolute inset-0 w-full h-full">
+              <Card className="transition delay-50 duration-150 ease-in-out hover:-translate-y-1 hover:scale-105">
+                <CardHeader>
                   <Image
-                    src={
-                      item.frontmatter.image || "/images/placeholder.min.svg"
-                    }
-                    alt={item.frontmatter.title || "item Image"}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw"
-                    priority={false}
-                    quality={75}
+                    src={item.frontmatter.image}
+                    alt={item.frontmatter.title}
+                    width={300}
+                    height={300}
                   />
-                </div>
-                {/* Размытый футер */}
-                <CardFooter className="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-sm px-4 py-6">
-                  <div className="flex justify-between items-center w-full">
-                    <h4 className="text-white font-semibold">
-                      {item.frontmatter.title}
-                    </h4>
-                    {item.frontmatter.price && (
-                      <span className="text-white">
-                        {item.frontmatter.price}
-                      </span>
-                    )}
-                  </div>
-                </CardFooter>
+                </CardHeader>
+                <CardFooter>{item.frontmatter.title}</CardFooter>
               </Card>
             </Link>
           ))}

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { RuTubeFrame } from "@/components/shared/rutube-frame";
 import { promises as fs } from "fs";
 import path from "path";
+import { CallAction } from "@/components/shared/call-action";
 
 export default async function SinglePortfolioPage({
   params,
@@ -22,11 +23,11 @@ export default async function SinglePortfolioPage({
         <Image
           src={frontmatter.logo}
           alt={frontmatter.title}
-          width={100}
-          height={100}
-          className="w-24 h-24 rounded-full"
+          width={80}
+          height={80}
+          className="w-20 h-20 rounded-full"
         />
-        <div>
+        <div className="flex flex-col">
           <h1>{frontmatter.title}</h1>
           <p>{frontmatter.client_category}</p>
         </div>
@@ -45,7 +46,8 @@ export default async function SinglePortfolioPage({
           </Link>
         </Button>
       </div>
-      <RuTubeFrame videoId={frontmatter.videoId} title={frontmatter.title} />
+      <RuTubeFrame videoId={frontmatter.video} title={frontmatter.title} />
+      <CallAction />
     </div>
   );
 }

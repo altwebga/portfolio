@@ -49,7 +49,7 @@ export function ContactDialog() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="outline">Начать проект</Button>
+        <Button>Начать проект</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
