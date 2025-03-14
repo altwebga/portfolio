@@ -49,9 +49,9 @@ export function StagesDevelopment() {
   return (
     <section className="container mx-auto px-4 pt-12">
       <h2>Этапы разработки</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10 py-4">
         {steps.map((step, index) => (
-          <Card key={index} className="shadow-lg p-4 relative">
+          <Card key={index} className="shadow-lg py-4 md:p-8 relative">
             <CardHeader>
               <CardTitle>{step.title}</CardTitle>
               <CardDescription></CardDescription>

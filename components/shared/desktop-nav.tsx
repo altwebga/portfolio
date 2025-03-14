@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { navItems } from "./mobile-nav";
+import { navItems } from "@/lib/nav-items";
 import { Button } from "../ui/button";
 
 export function DesktopNav() {

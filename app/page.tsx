@@ -5,7 +5,7 @@ import { Hero } from "@/components/shared/hero";
 import { MyClients } from "@/components/shared/my-clients";
 import { ServicesHome } from "@/components/shared/services-home";
 import { StagesDevelopment } from "@/components/shared/stages-development";
-import { UsingTechnology } from "@/components/shared/using-technology";
+// import { UsingTechnology } from "@/components/shared/using-technology";
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
       <Hero />
       <MyClients />
       <ServicesHome />
-      <UsingTechnology />
+      {/* <UsingTechnology /> */}
       <StagesDevelopment />
       <CallAction />
       <Footer />

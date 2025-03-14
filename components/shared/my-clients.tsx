@@ -27,7 +27,7 @@ export function MyClients() {
   return (
     <section className="container mx-auto px-4">
       <h2>Мне доверяют</h2>
-      <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-subgrid gap-6  py-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-subgrid gap-4 md:gap-10 py-6">
         {client.map((item) => (
           <Card key={item.title} className="max-w-sm">
             <CardContent className="flex gap-2">
