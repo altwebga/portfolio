@@ -20,6 +20,12 @@ export default async function SingleServicePage({
         <div>
           <h1>{frontmatter.title}</h1>
           <Post />
+          <h3>Сколько стоит?</h3>
+          <p>
+            Стоимость работ начинается{" "}
+            <b className="text-primary">{frontmatter.price}</b>. Точную цену
+            смогу назвать только после составления технического задания.
+          </p>
         </div>
         <Image
           src={frontmatter.image}

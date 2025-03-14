@@ -17,16 +17,6 @@ export const client = [
     logo: "/images/logo/gapk_logo.jpg",
   },
   {
-    title: "ООО ИнноваМед",
-    client_category: "Медицинский центр",
-    logo: "/images/logo/logo_08.png",
-  },
-  {
-    title: "ООО Окна ОММА",
-    client_category: "Строительно монтажная фирма",
-    logo: "/images/logo/logo_02.png",
-  },
-  {
     title: "АО АЛИРА Групп",
     client_category: "Парк-отель",
     logo: "/images/logo/aya-logo.png",
