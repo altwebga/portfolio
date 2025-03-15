@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import { YandexMetrikaContainer } from "@/components/shared/yandex-metrika";
 
 import localFont from "next/font/local";
 import "./globals.css";
@@ -38,6 +39,7 @@ export default function RootLayout({
           {children}
           <Toaster />
         </ThemeProvider>
+        <YandexMetrikaContainer />
       </body>
     </html>
   );

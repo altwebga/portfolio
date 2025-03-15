@@ -65,6 +65,9 @@ importers:
       react-hook-form:
         specifier: ^7.54.2
         version: 7.54.2(react@19.0.0)
+      react-yandex-metrika:
+        specifier: ^2.6.0
+        version: 2.6.0(prop-types@15.8.1)(react@19.0.0)
       rehype-highlight:
         specifier: ^7.0.2
         version: 7.0.2
@@ -1981,6 +1984,12 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  react-yandex-metrika@2.6.0:
+    resolution: {integrity: sha512-8K4wExsNZtY3DTxh1G8a+zWH9Pg8fw23MJcoJ4I/562qrHRnh7L5nteq3lnNL58dnNQbuuHIRoGgMjIo+r1GjA==}
+    peerDependencies:
+      prop-types: '*'
+      react: '*'
 
   react@19.0.0:
     resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
@@ -4596,6 +4605,11 @@ snapshots:
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 19.0.10
+
+  react-yandex-metrika@2.6.0(prop-types@15.8.1)(react@19.0.0):
+    dependencies:
+      prop-types: 15.8.1
+      react: 19.0.0
 
   react@19.0.0: {}
 

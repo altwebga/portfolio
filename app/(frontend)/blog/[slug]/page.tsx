@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import "highlight.js/styles/github-dark.css";
+import { CallAction } from "@/components/shared/call-action";
 
 export default async function SinglePostPage({
   params,
@@ -15,9 +16,10 @@ export default async function SinglePostPage({
   return (
     <div>
       <h1>{frontmatter.title}</h1>
-      <div className="max-w-3xl pt-4">
+      <div className="max-w-4xl pt-4">
         <Post />
       </div>
+      <CallAction />
     </div>
   );
 }

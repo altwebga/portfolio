@@ -66,7 +66,7 @@ export default async function BlogPage() {
                     } // Замените на fallback изображение
                     alt={post.frontmatter.title || "post Image"}
                     fill
-                    className="object-cover"
+                    className="object-cover aspect-square"
                     sizes="(max-width: 768px) 100vw"
                     priority={false}
                     quality={75}
@@ -78,11 +78,6 @@ export default async function BlogPage() {
                     <h4 className="text-white font-semibold">
                       {post.frontmatter.title}
                     </h4>
-                    {post.frontmatter.price && (
-                      <span className="text-white">
-                        {post.frontmatter.price}
-                      </span>
-                    )}
                   </div>
                 </CardFooter>
               </Card>
