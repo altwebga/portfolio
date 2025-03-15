@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className={`${tildaSans.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
