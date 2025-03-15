@@ -3,7 +3,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
+import { sendFormSMTP } from "@/actions/send-form";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,9 +16,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { YandexCaptcha } from "./yandex-captcha";
+import { usePathname } from "next/navigation"; // Импортируем usePathname
 
 type ContactFormProps = {
   className?: string;
+  onSuccess: () => void;
 };
 
 const FormSchema = z.object({
@@ -31,7 +33,7 @@ const FormSchema = z.object({
   }),
 });
 
-export function ContactForm({ className }: ContactFormProps) {
+export function ContactForm({ className, onSuccess }: ContactFormProps) {
   const [isCaptchaVerified, setIsCaptchaVerified] = useState<boolean>(false);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -41,14 +43,33 @@ export function ContactForm({ className }: ContactFormProps) {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast("You submitted the following values:", {
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+  // Получаем текущий путь страницы
+  const pathname = usePathname();
+
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    try {
+      // Формируем полный URL
+      const url = `${process.env.NEXT_PUBLIC_BASE_URL}${pathname}`;
+
+      // Подготавливаем данные для отправки, включая URL
+      const formData = {
+        name: data.firstName,
+        phone: data.phone,
+        url: url, // Добавляем URL страницы
+      };
+
+      // Вызываем функцию отправки формы
+      await sendFormSMTP(formData);
+
+      // Уведомление об успешной отправке
+      toast.success("Форма успешно отправлена!");
+      form.reset(); // Сброс полей формы
+      onSuccess(); // Закрытие формы
+    } catch (error) {
+      // Уведомление об ошибке
+      toast.error("Произошла ошибка при отправке формы.");
+      console.error("Ошибка при отправке формы:", error);
+    }
   }
 
   return (

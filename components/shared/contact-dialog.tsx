@@ -25,7 +25,7 @@ import { ContactForm } from "./contact-form";
 export function ContactDialog() {
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile();
-
+  const handleClose = () => setOpen(false); // Функция для закрытия формы
   if (!isMobile) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
@@ -42,7 +42,7 @@ export function ContactDialog() {
               мин.
             </DialogDescription>
           </DialogHeader>
-          <ContactForm />
+          <ContactForm onSuccess={handleClose} />
         </DialogContent>
       </Dialog>
     );
@@ -63,7 +63,7 @@ export function ContactDialog() {
             мин.
           </DrawerDescription>
         </DrawerHeader>
-        <ContactForm className="px-4 space-y-4" />
+        <ContactForm onSuccess={handleClose} className="px-4 space-y-4" />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline" className="w-full mt-2">

@@ -15,8 +15,7 @@ export default async function SingleServicePage({
 
   return (
     <>
-      <div className="bg-[url(/images/hero-bg.min.svg)] opacity-15 absolute top-0 left-0 h-screen w-full z-0"></div>
-      <div className="z-10 grid grid-cols-1 md:grid-cols-2 gap-4 justify-between">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-between">
         <div>
           <h1>{frontmatter.title}</h1>
           <Post />
