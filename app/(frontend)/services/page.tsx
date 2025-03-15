@@ -2,7 +2,28 @@ import { promises as fs } from "fs";
 import path from "path";
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
 import { Card, CardFooter } from "@/components/ui/card";
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+export const metadata: Metadata = {
+  title: "Услуги",
+  description:
+    "Профессиональные услуги по разработке сайтов, SEO оптимизации, продвижению и поддержке. Создаем современные сайты и приложения для вашего бизнеса.",
+  keywords:
+    "разработка сайтов, заказать сайт, мобильное приложение, продвижение сайтов, SEO, SEO оптимизация, поддержка сайтов, создание сайтов, digital агентство",
+  openGraph: {
+    images: [
+      {
+        url: `${baseUrl}/images/og/services.webp`,
+        width: 800,
+        height: 600,
+        alt: "Услуги SEOMIX",
+      },
+    ],
+  },
+};
 
 export default async function ServicesPage() {
   // Путь к папке с MDX-файлами

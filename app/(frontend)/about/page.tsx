@@ -6,20 +6,24 @@ import { Metadata } from "next";
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const metadata: Metadata = {
-  title: "Обо мне",
+  title: "Обо мне", // Будет объединено с шаблоном: "Обо мне | SEOMIX"
   description:
-    "Разработка и продвижение сайтов в Горно-Алтайске и Республике Алтай. Более 10 лет опыта. ",
+    "Частный вебмастер с более чем 10-летним опытом. Разработка и продвижение сайтов в Горно-Алтайске и Республике Алтай. Создаю современные и эффективные решения для вашего бизнеса.",
+  keywords:
+    "вебмастер, разработка сайтов, продвижение сайтов, SEO, Горно-Алтайск, Республика Алтай, создание сайтов, частный специалист, опыт, портфолио",
   openGraph: {
+    url: `${baseUrl}/about`,
+    siteName: "SEOMIX",
     images: [
       {
-        url: `${baseUrl}/images/me.jpg`, // Must be an absolute URL
+        url: `${baseUrl}/images/og/about.webp`, // Убедитесь, что изображение доступно по этому пути
         width: 800,
         height: 600,
+        alt: "Обо мне | SEOMIX",
       },
     ],
   },
 };
-
 export default function AboutPage() {
   return (
     <div>

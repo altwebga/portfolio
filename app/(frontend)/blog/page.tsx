@@ -2,7 +2,30 @@ import { promises as fs } from "fs";
 import path from "path";
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
 import { Card, CardFooter } from "@/components/ui/card";
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+export const metadata: Metadata = {
+  title: "Блог",
+  description:
+    "Полезные статьи и советы по разработке сайтов, SEO оптимизации, продвижению и поддержке. Читайте актуальные материалы от частного вебмастера.",
+  keywords:
+    "блог, статьи, разработка сайтов, SEO, SEO оптимизация, продвижение сайтов, советы, поддержка сайтов, создание сайтов, веб-разработка",
+  openGraph: {
+    url: `${baseUrl}/blog`,
+    siteName: "SEOMIX",
+    images: [
+      {
+        url: `${baseUrl}/images/og/blog.webp`,
+        width: 800,
+        height: 600,
+        alt: "Блог SEOMIX",
+      },
+    ],
+  },
+};
 
 export default async function BlogPage() {
   // Путь к папке с MDX-файлами

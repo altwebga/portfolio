@@ -3,25 +3,25 @@ import Image from "next/image";
 import { SocialLinks } from "@/components/shared/social-links";
 import { CallAction } from "@/components/shared/call-action";
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
 export const metadata: Metadata = {
   title: "Контакты",
   description:
-    "Контакты частного вебмастера в Горно-Алтайске. Разработка сайтов, продвижение, SEO оптимизация.",
+    "Контакты частного вебмастера в Горно-Алтайске. Разработка сайтов, продвижение, SEO оптимизация. Свяжитесь со мной для создания современного сайта или приложения.",
   keywords:
-    "разработка сайтов, заказать, мобильное приложение, продвижение сайтов, поддержка, обслуживание, создание сайтов, seo, seo оптимизация",
+    "контакты вебмастера, разработка сайтов, заказать сайт, мобильное приложение, продвижение сайтов, SEO, SEO оптимизация, поддержка сайтов, создание сайтов, Горно-Алтайск",
   openGraph: {
-    title: "SEOMIX",
-    description: "Разработка и продвижение сайтов.",
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}/contact`,
+    url: `${baseUrl}/contact`,
     siteName: "SEOMIX",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/images/og.png`,
-        width: 1200,
-        height: 630,
+        url: `${baseUrl}/images/og/contact.webp`,
+        width: 800,
+        height: 600,
+        alt: "Контакты SEOMIX",
       },
     ],
-    locale: "ru",
   },
 };
 

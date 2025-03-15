@@ -2,7 +2,29 @@ import { promises as fs } from "fs";
 import path from "path";
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
 import { Card, CardFooter, CardHeader } from "@/components/ui/card";
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
+export const metadata: Metadata = {
+  title: "Портфолио",
+  description:
+    "Контакты частного вебмастера в Горно-Алтайске. Разработка сайтов, продвижение, SEO оптимизация.",
+  keywords:
+    "разработка сайтов, заказать, мобильное приложение, продвижение сайтов, поддержка, обслуживание, создание сайтов, seo, seo оптимизация",
+  openGraph: {
+    url: `${baseUrl}/contact`,
+    siteName: "SEOMIX",
+    images: [
+      {
+        url: `${baseUrl}/images/og/contact.webp`,
+        width: 800,
+        height: 600,
+      },
+    ],
+  },
+};
 
 export default async function PortfolioPage() {
   // Путь к папке с MDX-файлами
