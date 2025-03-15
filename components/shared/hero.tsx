@@ -18,7 +18,7 @@ export function Hero() {
           </p>
           <div className="flex gap-4 mt-8">
             <ContactDialog />
-            <Button variant="outline" asChild className="w-40">
+            <Button variant="secondary" asChild size="lg" className="w-40">
               <Link href="/portfolio">Портфолио</Link>
             </Button>
           </div>

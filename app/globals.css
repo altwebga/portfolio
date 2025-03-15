@@ -136,9 +136,9 @@
   h4 {
     @apply scroll-m-20 text-xl font-semibold tracking-tight mb-2;
   }
-  /* p {
-    @apply leading-7 [&:not(:first-child)]:mt-6 text-lg;
-  } */
+  p {
+    @apply text-lg mb-4;
+  }
   a {
     @apply font-medium decoration-primary decoration-2;
   }

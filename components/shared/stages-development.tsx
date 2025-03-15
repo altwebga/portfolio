@@ -53,7 +53,7 @@ export function StagesDevelopment() {
         {steps.map((step, index) => (
           <Card key={index} className="shadow-lg py-4 md:p-8 relative">
             <CardHeader>
-              <CardTitle>{step.title}</CardTitle>
+              <CardTitle className="text-2xl">{step.title}</CardTitle>
               <CardDescription></CardDescription>
             </CardHeader>
             <CardContent>

@@ -13,6 +13,7 @@ export function DesktopNav() {
           {navItems.map((item) => (
             <li key={item.href}>
               <Button
+                size="lg"
                 asChild
                 variant={pathname === item.href ? "outline" : "ghost"}
               >

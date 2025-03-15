@@ -30,7 +30,7 @@ export function ContactDialog() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant={"default"} className="w-40">
+          <Button variant={"default"} size="lg" className="w-40">
             Начать проект
           </Button>
         </DialogTrigger>
@@ -51,7 +51,7 @@ export function ContactDialog() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant={"default"} className="w-40">
+        <Button variant={"default"} size="lg" className="w-40">
           Начать проект
         </Button>
       </DrawerTrigger>
@@ -66,7 +66,7 @@ export function ContactDialog() {
         <ContactForm onSuccess={handleClose} className="px-4 space-y-4" />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline" className="w-full mt-2">
+            <Button variant="outline" size="lg" className="w-full mt-2">
               Отмена
             </Button>
           </DrawerClose>

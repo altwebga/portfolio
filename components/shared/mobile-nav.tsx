@@ -14,7 +14,7 @@ import {
   SheetFooter,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { MenuIcon, XIcon } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { navItems } from "@/lib/nav-items";
 export function MobileNav() {
@@ -24,7 +24,10 @@ export function MobileNav() {
     <div className="md:hidden">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button variant={"ghost"}> {open ? <X /> : <Menu />} Меню</Button>
+          <Button variant="ghost" size="lg" className="text-lg">
+            {open ? <XIcon /> : <MenuIcon />}
+            Меню
+          </Button>
         </SheetTrigger>
         <SheetContent side="left">
           <SheetHeader>
@@ -37,7 +40,7 @@ export function MobileNav() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "cursor-pointer font-medium transition-colors hover:text-primary",
+                        "cursor-pointer font-medium transition-colors hover:text-primary text-2xl",
                         pathname === item.href
                           ? "text-primary"
                           : "text-muted-foreground"

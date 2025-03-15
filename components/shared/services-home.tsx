@@ -87,7 +87,7 @@ export function ServicesHome() {
           Каждый проект уникален, каждый набор услуг будет подобран под вашу
           конкретную ситуацию и задачи.
         </p>
-        <Button variant={"outline"} className="min-w-56" asChild>
+        <Button variant="secondary" size="lg" className="min-w-56" asChild>
           <Link href={"/services"}>Все услуги</Link>
         </Button>
       </div>
