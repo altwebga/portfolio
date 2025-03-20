@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider } from "@/components/theme-provider";
+import { AppProvider } from "@/components/app-provider";
 // import { YandexMetrikaContainer } from "@/components/shared/yandex-metrika";
 
 import localFont from "next/font/local";
@@ -30,15 +30,10 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className={`${tildaSans.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <AppProvider>
           {children}
           <Toaster />
-        </ThemeProvider>
+        </AppProvider>
         {/* <YandexMetrikaContainer /> */}
       </body>
     </html>
