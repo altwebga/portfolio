@@ -1,7 +1,6 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { Header } from "@/components/shared/header";
-import { Footer } from "@/components/shared/footer";
 
 export default async function DashboardLayout({
   children,
@@ -17,7 +16,6 @@ export default async function DashboardLayout({
     <>
       <Header />
       {children}
-      <Footer />
     </>
   );
 }

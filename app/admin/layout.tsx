@@ -1,5 +1,8 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import { Header } from "@/components/shared/header";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/admin/app-sidebar";
 
 export default async function AdminLayout({
   children,
@@ -15,5 +18,16 @@ export default async function AdminLayout({
     redirect("/dashboard");
     return null;
   }
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      <SidebarProvider>
+        <AppSidebar />
+        <main>
+          <SidebarTrigger />
+          {children}
+        </main>
+      </SidebarProvider>
+    </>
+  );
 }
