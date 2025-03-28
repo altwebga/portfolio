@@ -12,7 +12,7 @@ const tildaSans = localFont({
   weight: "100 900",
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     default: "SEOMIX",
     template: "%s | SEOMIX",
   },
+  description: "Разработка и продвижение сайтов в Горно-Алтайске",
+  keywords:
+    "вебмастер, разработка сайтов, продвижение сайтов, SEO, Горно-Алтайск, Республика Алтай, создание сайтов, частный специалист, поддержка сайтов, портфолио",
 };
 
 export default function RootLayout({
