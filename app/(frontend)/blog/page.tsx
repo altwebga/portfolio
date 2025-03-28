@@ -46,7 +46,13 @@ export default async function BlogPage() {
       };
     })
   );
-
+  // сортируем посты по дате
+  posts.sort((a, b) => {
+    return (
+      new Date(b.frontmatter.date).getTime() -
+      new Date(a.frontmatter.date).getTime()
+    );
+  });
   return (
     <div>
       <h1>Блог</h1>

@@ -2,6 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import "highlight.js/styles/github-dark.css";
 import { CallAction } from "@/components/shared/call-action";
+import { Badge } from "@/components/ui/badge";
 
 export default async function SinglePostPage({
   params,
@@ -19,6 +20,13 @@ export default async function SinglePostPage({
       <div className="max-w-4xl pt-4">
         <Post />
       </div>
+      {frontmatter.tags && (
+        <div className="flex flex-wrap gap-2">
+          {frontmatter.tags.map((tag: string) => (
+            <Badge key={tag}>{tag}</Badge>
+          ))}
+        </div>
+      )}
       <CallAction />
     </div>
   );
