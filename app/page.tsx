@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "SEOMIX",
     images: [
       {
-        url: `${baseUrl}/images/og/home.webp`, // Убедитесь, что изображение доступно по этому пути
+        url: `${baseUrl}/images/og/home.webp`,
         width: 800,
         height: 600,
         alt: "Главная | SEOMIX",

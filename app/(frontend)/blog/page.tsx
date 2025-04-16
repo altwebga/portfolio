@@ -64,12 +64,11 @@ export default async function BlogPage() {
               key={post.filename}
             >
               <Card className="relative shadow-md overflow-hidden h-96 transition delay-50 duration-150 ease-in-out hover:-translate-y-1 hover:scale-105">
-                {/* Контейнер для изображения */}
                 <div className="absolute inset-0 w-full h-full">
                   <Image
                     src={
                       post.frontmatter.image || "/images/placeholder.min.svg"
-                    } // Замените на fallback изображение
+                    }
                     alt={post.frontmatter.title || "post Image"}
                     fill
                     className="object-cover aspect-square"

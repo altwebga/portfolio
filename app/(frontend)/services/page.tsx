@@ -44,13 +44,17 @@ export default async function ServicesPage() {
       };
     })
   );
-
+  const sortedServices = services.sort((a, b) => {
+    const idA = parseInt(a.frontmatter.id);
+    const idB = parseInt(b.frontmatter.id);
+    return idA - idB;
+  });
   return (
     <div>
       <h1>Мои услуги</h1>
       <div className="py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {services.map((service) => (
+          {sortedServices.map((service) => (
             <Link
               href={`/services/${service.filename.split(".")[0]}`}
               key={service.filename}
