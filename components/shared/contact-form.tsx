@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { YandexCaptcha } from "./yandex-captcha";
 import { usePathname } from "next/navigation"; // Импортируем usePathname
 
@@ -95,7 +96,7 @@ export function ContactForm({ className, onSuccess }: ContactFormProps) {
             <FormItem>
               <FormLabel>Номер телефона</FormLabel>
               <FormControl>
-                <Input placeholder="+71234567890" {...field} />
+                <PhoneInput {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
