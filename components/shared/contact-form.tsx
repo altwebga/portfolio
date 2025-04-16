@@ -28,9 +28,8 @@ const FormSchema = z.object({
   firstName: z.string().min(2, {
     message: "Имя не должно быть меньше 2 символов",
   }),
-  phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, {
-    message:
-      "Номер телефона должен быть в международном формате, например, +71234567890",
+  phone: z.string().min(1, {
+    message: "Пожалуйста, введите номер телефона",
   }),
 });
 
@@ -96,7 +95,15 @@ export function ContactForm({ className, onSuccess }: ContactFormProps) {
             <FormItem>
               <FormLabel>Номер телефона</FormLabel>
               <FormControl>
-                <PhoneInput {...field} />
+                <PhoneInput
+                  {...field}
+                  defaultCountry="RU"
+                  placeholder="+7 (___) ___ __ __"
+                  onChange={(value) => field.onChange(value)}
+                  value={field.value}
+                  required
+                  autoComplete="tel"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
