@@ -62,7 +62,9 @@ export function ContactForm({ className, onSuccess }: ContactFormProps) {
       await sendFormSMTP(formData);
 
       // Уведомление об успешной отправке
-      toast.success("Форма успешно отправлена!");
+      toast.success(
+        "Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время."
+      );
       form.reset(); // Сброс полей формы
       onSuccess(); // Закрытие формы
     } catch (error) {
