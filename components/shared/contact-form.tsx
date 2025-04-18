@@ -100,7 +100,6 @@ export function ContactForm({ className, onSuccess }: ContactFormProps) {
                 <PhoneInput
                   {...field}
                   defaultCountry="RU"
-                  placeholder="+7 (___) ___ __ __"
                   onChange={(value) => field.onChange(value)}
                   value={field.value}
                   required
