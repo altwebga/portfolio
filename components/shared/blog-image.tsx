@@ -22,6 +22,7 @@ export default function BlogImage({
       width={width}
       height={height}
       className={className}
+      priority={true}
     />
   );
 }
