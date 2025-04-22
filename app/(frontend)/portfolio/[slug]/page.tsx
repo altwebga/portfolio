@@ -27,9 +27,9 @@ export default async function SinglePortfolioPage({
           height={80}
           className="w-20 h-20 rounded-full"
         />
-        <div className="flex flex-col">
-          <h1>{frontmatter.title}</h1>
-          <p>{frontmatter.client_category}</p>
+        <div className="flex flex-col gap-0">
+          <h1 className="p-0 m-0">{frontmatter.title}</h1>
+          <p className="p-0 m-0">{frontmatter.client_category}</p>
         </div>
       </div>
       <div className="flex flex-col md:flex-row gap-4 justify-between items-end">
