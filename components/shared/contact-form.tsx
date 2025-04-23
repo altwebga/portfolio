@@ -104,6 +104,7 @@ export function ContactForm({ className, onSuccess }: ContactFormProps) {
                   value={field.value}
                   required
                   autoComplete="tel"
+                  placeholder="+7 999 999 99 99"
                 />
               </FormControl>
               <FormMessage />

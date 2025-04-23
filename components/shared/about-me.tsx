@@ -33,9 +33,9 @@ export function AboutMe() {
         <h3>Экспертиза</h3>
         <p>
           Владею HTML5, CSS3, TypeScript и популярными фреймворками на основе
-          React.js, такими как React Native и Next.js. Больше 7 лет разрабатываю
-          сайты на WordPress в том числе c использованием его как Headless CMS
-          (GraphQL, REST API).
+          React.js, такими как React Native и Next.js. Больше 10 лет
+          разрабатываю сайты на WordPress в том числе c использованием его как
+          Headless CMS (GraphQL, REST API).
         </p>
         <p>
           Есть опыт программирования на PHP и Python. Могу самостоятельно внести
