@@ -30,16 +30,16 @@ export function ContactDialog() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant={"default"} size="lg" className="w-40">
+          <Button variant="default" size="lg" className="w-40">
             Начать проект
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Перезвоните мне</DialogTitle>
-            <DialogDescription>
-              Оставьте ваши контактные данные и мы свяжемся с вами в течении 15
-              мин.
+          <DialogHeader className="flex flex-col gap-2">
+            <DialogTitle>Заявка на проект</DialogTitle>
+            <DialogDescription className="m-0">
+              Оставьте ваши контактные данные. Я свяжусь с вами в течении 15
+              минут.
             </DialogDescription>
           </DialogHeader>
           <ContactForm onSuccess={handleClose} />
@@ -51,16 +51,16 @@ export function ContactDialog() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant={"default"} size="lg" className="w-40">
+        <Button variant="default" size="lg" className="w-40">
           Начать проект
         </Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Перезвоните мне</DrawerTitle>
-          <DrawerDescription>
-            Оставьте ваши контактные данные и мы свяжемся с вами в течении 15
-            мин.
+          <DrawerTitle>Заявка на проект</DrawerTitle>
+          <DrawerDescription className="m-0">
+            Оставьте ваши контактные данные. Я свяжусь с вами в течении 15
+            минут.
           </DrawerDescription>
         </DrawerHeader>
         <ContactForm onSuccess={handleClose} className="px-4 space-y-4" />
