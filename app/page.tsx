@@ -40,7 +40,7 @@ export default function Home() {
       <ServicesHome />
       {/* <UsingTechnology /> */}
       <StagesDevelopment />
-      <CallAction />
+      <div className="px-4"><CallAction /></div>
       <Footer />
     </>
   );
