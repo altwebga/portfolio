@@ -8,9 +8,9 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export const metadata: Metadata = {
   title: "Обо мне", // Будет объединено с шаблоном: "Обо мне | SEOMIX"
   description:
-    "Частный вебмастер с более чем 10-летним опытом. Разработка и продвижение сайтов в Горно-Алтайске и Республике Алтай. Создаю современные и эффективные решения для вашего бизнеса.",
+    "Частный вебмастер с более чем 10-летним опытом. Разработка и продвижение сайтов в Краснодаре и Краснодарском крае. Создаю современные и эффективные решения для вашего бизнеса.",
   keywords:
-    "вебмастер, разработка сайтов, продвижение сайтов, SEO, Горно-Алтайск, Республика Алтай, создание сайтов, частный специалист, опыт, портфолио",
+    "вебмастер, разработка сайтов, продвижение сайтов, SEO, Краснодар, Краснодарский край, создание сайтов, частный специалист, опыт, портфолио",
   openGraph: {
     url: `${baseUrl}/about`,
     siteName: "SEOMIX",
@@ -29,7 +29,7 @@ export default function AboutPage() {
     <div>
       <h1>Обо мне</h1>
       <AboutMe />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-[1024px] mx-auto">
         <PopupPhoto title="Я.Практикум" image="/images/diploma_page_01.webp" />
         <PopupPhoto title="Я.Практикум" image="/images/diploma_page_02.webp" />
       </div>

@@ -33,7 +33,7 @@ export function PopupPhoto({ title, image }: PopupPhotoProps) {
         <Image
           src={image}
           alt={title}
-          className="w-auto h-auto"
+          className="w-full h-full object-contain"
           width={1024}
           height={1024}
         />

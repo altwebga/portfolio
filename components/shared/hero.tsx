@@ -9,8 +9,8 @@ export function Hero() {
           <h1 className="text-4xl md:text-5xl font-bold">
             Разработка и продвижение сайтов
             <br />
-            <span className="text-4xl md:text-8xl bg-gradient-to-r from-fuchsia-600 to-blue-600 bg-clip-text text-transparent">
-              в Горно-Алтайске
+            <span className="text-4xl md:text-8xl text-red-500">
+              в Краснодаре
             </span>
           </h1>
           <p className="text-xl">

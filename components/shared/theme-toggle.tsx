@@ -17,11 +17,11 @@ export function ThemeToggle() {
     >
       <div className="dark:hidden flex flex-row items-center gap-2">
         <Sun className="h-8 w-8 " />
-        <span>День</span>
+        <span>Ночь</span>
       </div>
       <div className="hidden dark:flex flex-row items-center gap-2">
         <Moon className="h-8 w-8" />
-        <span>Ночь</span>
+        <span>День</span>
       </div>
       <span className="sr-only">Toggle theme</span>
     </Button>
