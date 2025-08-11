@@ -15,6 +15,15 @@ export default async function SingleServicePage({
 
   return (
     <>
+      <div className="fixed bottom-0 left-0 z-[-1] w-full h-screen">
+        <Image
+          src={frontmatter.image}
+          alt={frontmatter.title}
+          width={1024}
+          height={1024}
+          className="w-full h-full object-cover opacity-5"
+        />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-between">
         <div>
           <h1>{frontmatter.title}</h1>
@@ -26,13 +35,7 @@ export default async function SingleServicePage({
             смогу назвать только после составления технического задания.
           </p>
         </div>
-        <Image
-          src={frontmatter.image}
-          alt={frontmatter.title}
-          width={600}
-          height={600}
-          className="rounded-xl"
-        />
+        <div></div>
       </div>
       <CallAction />
     </>

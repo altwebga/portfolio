@@ -9,12 +9,14 @@ export function Hero() {
           <h1 className="text-4xl md:text-5xl font-bold">
             Разработка и продвижение сайтов
             <br />
-            <span className="text-4xl md:text-8xl text-red-500">
+            <span className="text-4xl md:text-8xl text-primary">
               в Краснодаре
             </span>
           </h1>
           <p className="text-xl max-w-2xl pt-4">
-          Создаем эффективные сайты, запускаем SEO и рекламу, настраиваем аналитику и помогаем бизнесу расти. Работаем на результат — если не понравится, вернем деньги.
+            Создаем эффективные сайты, запускаем SEO и рекламу, настраиваем
+            аналитику и помогаем бизнесу расти. Работаем на результат — если не
+            понравится, вернем деньги.
           </p>
           <div className="flex gap-4 mt-8">
             <ContactDialog />
