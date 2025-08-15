@@ -9,7 +9,7 @@ export function Hero() {
           <h1 className="text-4xl md:text-5xl font-bold">
             Разработка и продвижение сайтов
             <br />
-            <span className="text-4xl md:text-8xl text-primary">
+            <span className="text-4xl md:text-9xl text-red-500">
               в Краснодаре
             </span>
           </h1>
