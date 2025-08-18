@@ -147,4 +147,10 @@
   code {
     @apply my-4;
   }
+  ul {
+    @apply list-disc pl-4 my-2;
+  }
+  ol {
+    @apply list-decimal pl-4 my-2;
+  }
 }
