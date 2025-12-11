@@ -1,7 +1,35 @@
+import { getSlugs } from "@/lib/content";
 import { CallAction } from "@/components/shared/call-action";
-import { promises as fs } from "fs";
 import Image from "next/image";
-import path from "path";
+
+export async function generateStaticParams() {
+  const slugs = await getSlugs("services");
+  return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const slug = (await params).slug;
+  const { frontmatter } = await import(`@/content/services/${slug}.mdx`);
+  return {
+    title: frontmatter.title,
+    description: frontmatter.description,
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.description,
+      images: [
+        {
+          url: frontmatter.image,
+          width: 800,
+          height: 600,
+        },
+      ],
+    },
+  };
+}
 
 export default async function SingleServicePage({
   params,
@@ -41,43 +69,3 @@ export default async function SingleServicePage({
     </>
   );
 }
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const slug = (await params).slug;
-  const { frontmatter } = await import(`@/content/services/${slug}.mdx`);
-  return {
-    title: frontmatter.title,
-    description: frontmatter.description,
-    openGraph: {
-      title: frontmatter.title,
-      description: frontmatter.description,
-      images: [
-        {
-          url: frontmatter.image,
-          width: 800,
-          height: 600,
-        },
-      ],
-    },
-  };
-}
-export async function generateStaticParams() {
-  // Путь к папке с MDX-файлами
-  const directoryPath = path.join(process.cwd(), "content/services");
-
-  // Получаем список всех MDX-файлов
-  const files = (await fs.readdir(directoryPath)).filter((file) =>
-    file.endsWith(".mdx")
-  );
-  return [
-    ...files.map((file) => ({
-      slug: file.split(".")[0],
-    })),
-  ];
-}
-
-export const dynamicParams = false;

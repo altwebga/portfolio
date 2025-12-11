@@ -11,20 +11,8 @@ export const socialLinks = [
     url: "https://t.me/sib_kos",
   },
   {
-    title: "ВКонтакте",
+    title: "MAX",
     url: "https://vk.com/kuznecov_kn",
-  },
-  {
-    title: "GitHub",
-    url: "https://github.com/altwebga",
-  },
-  {
-    title: "Яндекс.Услуги",
-    url: "https://uslugi.yandex.ru/profile/KonstantinK-2288483",
-  },
-  {
-    title: "Skype",
-    url: "https://join.skype.com/invite/bQh27VHgyxIW",
   },
 ];
 

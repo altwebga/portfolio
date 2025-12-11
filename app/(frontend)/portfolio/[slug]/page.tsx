@@ -1,11 +1,38 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-
+import { getSlugs } from "@/lib/content";
 import { RuTubeFrame } from "@/components/shared/rutube-frame";
-import { promises as fs } from "fs";
-import path from "path";
 import { CallAction } from "@/components/shared/call-action";
+
+export async function generateStaticParams() {
+  const slugs = await getSlugs("portfolio");
+  return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const slug = (await params).slug;
+  const { frontmatter } = await import(`@/content/portfolio/${slug}.mdx`);
+  return {
+    title: frontmatter.title,
+    description: frontmatter.description,
+    openGraph: {
+      title: frontmatter.title,
+      description: frontmatter.description,
+      images: [
+        {
+          url: frontmatter.image,
+          width: 800,
+          height: 600,
+        },
+      ],
+    },
+  };
+}
 
 export default async function SinglePortfolioPage({
   params,
@@ -51,43 +78,3 @@ export default async function SinglePortfolioPage({
     </div>
   );
 }
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const slug = (await params).slug;
-  const { frontmatter } = await import(`@/content/portfolio/${slug}.mdx`);
-  return {
-    title: frontmatter.title,
-    description: frontmatter.description,
-    openGraph: {
-      title: frontmatter.title,
-      description: frontmatter.description,
-      images: [
-        {
-          url: frontmatter.image,
-          width: 800,
-          height: 600,
-        },
-      ],
-    },
-  };
-}
-export async function generateStaticParams() {
-  // Путь к папке с MDX-файлами
-  const directoryPath = path.join(process.cwd(), "content/portfolio");
-
-  // Получаем список всех MDX-файлов
-  const files = (await fs.readdir(directoryPath)).filter((file) =>
-    file.endsWith(".mdx")
-  );
-  return [
-    ...files.map((file) => ({
-      slug: file.split(".")[0],
-    })),
-  ];
-}
-
-export const dynamicParams = false;
