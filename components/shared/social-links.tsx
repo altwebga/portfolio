@@ -12,7 +12,7 @@ export const socialLinks = [
   },
   {
     title: "MAX",
-    url: "https://vk.com/kuznecov_kn",
+    url: "https://max.ru/u/f9LHodD0cOKwVJaZuzkSJmFn-iEfTsmx7rENxYrpdykbilHXzsU38B3ExoQ",
   },
 ];
 
