@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { CookieNotification } from "@/components/shared/cookie-notification";
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider } from "@/components/theme-provider";
 import { YandexMetrikaContainer } from "@/components/shared/yandex-metrika";
 
-import localFont from "next/font/local";
-import "./globals.css";
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
 
-const tildaSans = localFont({
-  src: "../public/fonts/TildaSans-VF.woff",
-  variable: "--font-tilda-sans",
-  weight: "100 900",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
@@ -29,17 +36,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" suppressHydrationWarning>
-      <body className={`${tildaSans.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Header />
+          <ScrollProgress className="top-[64px]" />
+          <main className="basis-full">{children}</main>
+          <Footer />
           <Toaster />
+          <CookieNotification />
+          <YandexMetrikaContainer />
         </ThemeProvider>
-        <YandexMetrikaContainer />
       </body>
     </html>
   );

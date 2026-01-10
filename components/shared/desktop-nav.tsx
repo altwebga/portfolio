@@ -1,28 +1,36 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { navItems } from "@/lib/nav-items";
-import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
+import { menuLinks } from "@/config/menu-links";
 
 export function DesktopNav() {
   const pathname = usePathname();
+
   return (
-    <div className="hidden md:flex items-center gap-8">
-      <nav>
-        <ul className="list-none flex items-center gap-2">
-          {navItems.map((item) => (
+    <nav>
+      <ul className="flex flex-row gap-12 list-none">
+        {menuLinks.map((item) => {
+          const isActive = pathname === item.href;
+
+          return (
             <li key={item.href}>
-              <Button
-                size="lg"
-                asChild
-                variant={pathname === item.href ? "outline" : "ghost"}
+              <Link
+                href={item.href}
+                className={cn(
+                  "relative pb-1 text-sm font-medium transition-colors",
+                  "after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:scale-x-0 after:bg-blue-500 after:transition-transform after:duration-200",
+                  "hover:after:scale-x-100",
+                  isActive && "after:scale-x-100 text-muted-foreground"
+                )}
               >
-                <Link href={item.href}>{item.title}</Link>
-              </Button>
+                {item.title}
+              </Link>
             </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }
