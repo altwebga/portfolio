@@ -146,16 +146,26 @@ export function ContactForm() {
         <SmartCaptchaWidget onToken={setCaptchaToken} language="ru" />
 
         <Field>
-          <div className="flex items-center gap-3">
-            <Checkbox
+          <div className="flex items-center gap-3 ml-2">
+            <input
+              type="checkbox"
               checked={agreement}
-              onCheckedChange={(v) => setAgreement(Boolean(v))}
+              onChange={(e) => setAgreement(e.target.checked)}
+              className="
+        h-4 w-4 shrink-0 rounded-[4px] border border-input
+        accent-primary
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+      "
             />
-            <FieldLabel className="m-0">
-              <Link href="/privacy-policy" target="_blank" rel="noopener">
-                Я согласен(а) на обработку персональных данных
-              </Link>
-            </FieldLabel>
+
+            <Link
+              href="/privacy-policy"
+              target="_blank"
+              rel="noopener"
+              className="cursor-pointer"
+            >
+              Я согласен(а) на обработку персональных данных
+            </Link>
           </div>
         </Field>
       </FieldGroup>
