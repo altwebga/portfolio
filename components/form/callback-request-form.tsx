@@ -142,7 +142,12 @@ export function CallbackRequestForm({
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel className="m-0">Номер телефона</FieldLabel>
-                  <Input {...field} placeholder="+7 123 456 7890" />
+                  <Input
+                    {...field}
+                    placeholder="+7 123 456 7890"
+                    type="tel"
+                    inputMode="tel"
+                  />
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}

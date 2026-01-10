@@ -23,7 +23,7 @@ export function Hero() {
     >
       {/* контент всегда выше псевдо-элемента */}
       <div className="relative container mx-auto flex h-full flex-col justify-between px-4">
-        <div className="mt-80 flex max-w-5xl flex-col space-y-8 md:ml-54">
+        <div className="mt-40 md:mt-80 flex max-w-5xl flex-col space-y-8 md:ml-54">
           <h1 className="flex flex-col font-extrabold text-2xl md:text-5xl">
             {text.title}
             <span className="text-4xl md:text-9xl"> {text.city}</span>

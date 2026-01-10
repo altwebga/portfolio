@@ -1,4 +1,7 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 import {
   Sheet,
   SheetClose,
@@ -10,19 +13,26 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "../ui/button";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { menuLinks } from "@/config/menu-links";
 import { socialLinks } from "@/config/social-links";
-import Image from "next/image";
+import { Menu, X } from "lucide-react";
 
 export function MobileNav() {
+  const [openMenu, setOpenMenu] = useState(false);
   const pathname = usePathname();
   return (
-    <Sheet>
+    <Sheet open={openMenu} onOpenChange={setOpenMenu}>
       <SheetTrigger asChild>
-        <Button variant="outline">Меню</Button>
+        <Button variant="outline" size="lg" className="flex gap-2">
+          <span className="text-sm">Меню</span>
+          {openMenu ? (
+            <X className="w-6! h-6!" />
+          ) : (
+            <Menu className="w-6! h-6!" />
+          )}
+        </Button>
       </SheetTrigger>
       <SheetContent side="left">
         <SheetHeader>
