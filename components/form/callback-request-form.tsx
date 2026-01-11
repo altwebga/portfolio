@@ -24,7 +24,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
+import ym from "react-yandex-metrika";
 
 import { SmartCaptchaWidget } from "../shared/smart-captcha";
 import Link from "next/link";
@@ -80,7 +80,7 @@ export function CallbackRequestForm({
         setCaptchaToken("");
         return;
       }
-
+      ym("reachGoal", "send_form");
       toast.success("Заявка отправлена");
       setOpen(false);
       form.reset();
