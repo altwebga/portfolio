@@ -8,6 +8,7 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { CookieNotification } from "@/components/shared/cookie-notification";
 import { Toaster } from "@/components/ui/sonner";
 import { YandexMetrikaContainer } from "@/components/shared/yandex-metrika";
+import { AIBot } from "@/components/shared/ai-bot";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,12 +47,13 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <ScrollProgress className="top-[64px]" />
+          <ScrollProgress className="top-16" />
           <main className="basis-full">{children}</main>
           <Footer />
           <Toaster />
           <CookieNotification />
           <YandexMetrikaContainer />
+          <AIBot />
         </ThemeProvider>
       </body>
     </html>
