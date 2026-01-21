@@ -1,6 +1,5 @@
 "use server";
 
-import { cache } from "react";
 import directus from "@/lib/directus";
 import { readItems, readSingleton } from "@directus/sdk";
 
@@ -8,16 +7,16 @@ import { readItems, readSingleton } from "@directus/sdk";
 // Articles
 // -------------------------
 
-export const getArticlesSEO = cache(async () => {
+export const getArticlesSEO = async () => {
   return directus.request(
     readItems("articles", {
       fields: ["slug", "seo", "date_created", "date_updated"],
       filter: { status: { _eq: "published" } },
-    })
+    }),
   );
-});
+};
 
-export const getArticleBySlug = cache(async (slug: string) => {
+export const getArticleBySlug = async (slug: string) => {
   const posts = await directus.request(
     readItems("articles", {
       limit: 1,
@@ -26,36 +25,36 @@ export const getArticleBySlug = cache(async (slug: string) => {
         slug: { _eq: slug },
         status: { _eq: "published" },
       },
-    })
+    }),
   );
 
   return posts?.[0] ?? null;
-});
+};
 
-export const getPublishedArticlesList = cache(async () => {
+export const getPublishedArticlesList = async () => {
   return directus.request(
     readItems("articles", {
       fields: ["slug", "title", "date_created", "id", "cover_image", "seo"],
       sort: ["-date_created"],
       filter: { status: { _eq: "published" } },
-    })
+    }),
   );
-});
+};
 
 // -------------------------
 // Projects
 // -------------------------
 
-export const getProjectsSEO = cache(async () => {
+export const getProjectsSEO = async () => {
   return directus.request(
     readItems("projects", {
       fields: ["slug", "seo", "date_created", "date_updated"],
       filter: { status: { _eq: "published" } },
-    })
+    }),
   );
-});
+};
 
-export const getProjectBySlug = cache(async (slug: string) => {
+export const getProjectBySlug = async (slug: string) => {
   const projects = await directus.request(
     readItems("projects", {
       limit: 1,
@@ -72,13 +71,13 @@ export const getProjectBySlug = cache(async (slug: string) => {
         slug: { _eq: slug },
         status: { _eq: "published" },
       },
-    })
+    }),
   );
 
   return projects?.[0] ?? null;
-});
+};
 
-export const getPublishedProjectsList = cache(async () => {
+export const getPublishedProjectsList = async () => {
   return directus.request(
     readItems("projects", {
       fields: [
@@ -92,40 +91,40 @@ export const getPublishedProjectsList = cache(async () => {
       ],
       sort: ["-release_date"],
       filter: { status: { _eq: "published" } },
-    })
+    }),
   );
-});
+};
 
 // -------------------------
 // Customers
 // -------------------------
 
-export const getCustomerById = cache(async (clientId: number) => {
+export const getCustomerById = async (clientId: number) => {
   const items = await directus.request(
     readItems("customers", {
       fields: ["id", "title", "content", "cover_image"],
       filter: { id: { _eq: clientId } },
       limit: 1,
-    })
+    }),
   );
 
   return items?.[0] ?? null;
-});
+};
 
 // -------------------------
 // Services
 // -------------------------
 
-export const getServicesSEO = cache(async () => {
+export const getServicesSEO = async () => {
   return directus.request(
     readItems("services", {
       fields: ["slug", "seo", "date_created", "date_updated"],
       filter: { status: { _eq: "published" } },
-    })
+    }),
   );
-});
+};
 
-export const getPublishedServicesList = cache(async () => {
+export const getPublishedServicesList = async () => {
   return directus.request(
     readItems("services", {
       fields: [
@@ -140,11 +139,11 @@ export const getPublishedServicesList = cache(async () => {
       ],
       sort: ["id"],
       filter: { status: { _eq: "published" } },
-    })
+    }),
   );
-});
+};
 
-export const getServiceBySlug = cache(async (slug: string) => {
+export const getServiceBySlug = async (slug: string) => {
   const services = await directus.request(
     readItems("services", {
       limit: 1,
@@ -160,21 +159,29 @@ export const getServiceBySlug = cache(async (slug: string) => {
         slug: { _eq: slug },
         status: { _eq: "published" },
       },
-    })
+    }),
   );
 
   return services?.[0] ?? null;
-});
+};
 
-export const getPrivacyPolicy = cache(async () => {
+// -------------------------
+// Privacy Policy
+// -------------------------
+
+export const getPrivacyPolicy = async () => {
   return directus.request(
     readSingleton("privacy_policy", {
       fields: ["title", "content"],
-    })
+    }),
   );
-});
+};
 
-export const getTeams = cache(async () => {
+// -------------------------
+// Teams
+// -------------------------
+
+export const getTeams = async () => {
   return directus.request(
     readItems("teams", {
       fields: [
@@ -189,6 +196,6 @@ export const getTeams = cache(async () => {
       ],
       sort: ["id"],
       filter: { status: { _eq: "published" } },
-    })
+    }),
   );
-});
+};

@@ -32,12 +32,18 @@ const directus = createDirectus<Schema>(directusUrl)
     rest({
       onRequest: (options) => {
         const method = (options.method ?? "GET").toUpperCase();
+        const headers = new Headers(options.headers);
         if (method === "GET") {
-          return { ...options, revalidate: 86400 };
+          return {
+            ...options,
+            headers,
+            next: { revalidate: 3600 },
+          };
         }
-        return options;
+
+        return { ...options, headers };
       },
-    })
+    }),
   );
 
 if (token) {
