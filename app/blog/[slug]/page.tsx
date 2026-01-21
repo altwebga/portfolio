@@ -6,9 +6,10 @@ import {
 } from "@/actions/get-content";
 import { Markdown } from "@/components/shared/markdown";
 import Link from "next/link";
+import { DirectusImage } from "@/components/shared/directus-image";
 
 export async function generateMetadata(
-  props: PageProps<"/blog/[slug]">
+  props: PageProps<"/blog/[slug]">,
 ): Promise<Metadata> {
   const { slug } = await props.params;
   const article = await getArticleBySlug(slug);
@@ -43,21 +44,30 @@ export default async function BlogPage(props: PageProps<"/blog/[slug]">) {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="md:w-2/3">
-            <h1>{article.title}</h1>
-            <Markdown markdown={article.content || ""} />
+            <h1 className="text-4xl font-bold mb-8 py-2">{article.title}</h1>
+            <DirectusImage
+              url={article.cover_image || ""}
+              alt={article.title}
+              width={1024}
+              height={1024}
+              className="w-4xl h-auto mb-8"
+            />
+            <Markdown markdown={article.content || ""} className="md:px-4" />
           </div>
           <aside className="md:w-1/3 md:border-l md:px-4">
-            <h2>Другие статьи</h2>
-            <ul className="space-y-2">
-              {articles
-                .filter((item) => item.slug !== slug)
-                .slice(0, 8)
-                .map((item) => (
-                  <li key={item.id}>
-                    <Link href={`/blog/${item.slug}`}>{item.title}</Link>
-                  </li>
-                ))}
-            </ul>
+            <div className="md:fixed md:top-24 max-w-2xl">
+              <h2>Другие статьи</h2>
+              <ul className="space-y-2">
+                {articles
+                  .filter((item) => item.slug !== slug)
+                  .slice(0, 8)
+                  .map((item) => (
+                    <li key={item.id}>
+                      <Link href={`/blog/${item.slug}`}>{item.title}</Link>
+                    </li>
+                  ))}
+              </ul>
+            </div>
           </aside>
         </div>
       </div>
