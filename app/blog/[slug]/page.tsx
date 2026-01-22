@@ -7,6 +7,7 @@ import {
 import { Markdown } from "@/components/shared/markdown";
 import Link from "next/link";
 import { DirectusImage } from "@/components/shared/directus-image";
+import { Badge } from "@/components/ui/badge";
 
 export async function generateMetadata(
   props: PageProps<"/blog/[slug]">,
@@ -53,6 +54,18 @@ export default async function BlogPage(props: PageProps<"/blog/[slug]">) {
               className="w-4xl h-auto mb-8"
             />
             <Markdown markdown={article.content || ""} className="md:px-4" />
+            {article.tags && (
+              <div className="my-8 flex justify-end gap-4 items-center">
+                <p className="m-0">Теги:</p>
+                <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
+                  {article.tags.map((tag) => (
+                    <li key={tag}>
+                      <Badge className="px-4 py-1">{tag}</Badge>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
           <aside className="md:w-1/3 md:border-l md:px-4">
             <div className="md:fixed md:top-24 max-w-2xl">

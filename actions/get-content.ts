@@ -20,7 +20,7 @@ export const getArticleBySlug = async (slug: string) => {
   const posts = await directus.request(
     readItems("articles", {
       limit: 1,
-      fields: ["title", "content", "cover_image", "seo"],
+      fields: ["title", "content", "cover_image", "seo", "tags", "category"],
       filter: {
         slug: { _eq: slug },
         status: { _eq: "published" },

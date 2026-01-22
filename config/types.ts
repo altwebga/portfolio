@@ -37,6 +37,8 @@ export interface Hero extends Base {
 }
 
 export interface Article extends Base {
+  tags: string[] | null;
+  category: string | null;
   seo: SEO;
 }
 
