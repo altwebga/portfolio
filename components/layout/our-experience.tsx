@@ -1,7 +1,5 @@
 import { Marquee } from "../ui/marquee";
 import { Container } from "../container/container";
-import directus from "@/lib/directus";
-import { readItems } from "@directus/sdk";
 import {
   SectionHeading,
   SectionHeadingTitle,
@@ -9,7 +7,7 @@ import {
   SectionHeadingContentType,
 } from "../ui/section-heading";
 import { CustomerCard } from "../shared/customer-card";
-import { Customer } from "@/config/types";
+import { getContent } from "@/actions/get-content";
 
 const text = {
   subTitle: "Опыт",
@@ -18,16 +16,8 @@ const text = {
     "Мы работали с проектами в туризме и гостиничном бизнесе, медицине и частных клиниках, торговле, строительстве и девелопменте, а также с образовательными платформами, корпоративными системами и цифровыми сервисами для бизнеса.",
 };
 
-async function getClients(): Promise<Customer[]> {
-  return directus.request(
-    readItems("customers", {
-      fields: ["id", "title", "content", "cover_image"],
-    })
-  );
-}
-
 export async function OurExperience() {
-  const customers = await getClients();
+  const customers = await getContent({ content_type: "customers" });
   if (!customers?.length) return null;
 
   const mid = Math.ceil(customers.length / 2);
@@ -48,7 +38,7 @@ export async function OurExperience() {
               key={customer.id}
               cover_image={customer.cover_image}
               title={customer.title}
-              content={customer.content}
+              content={customer.description}
             />
           ))}
         </Marquee>
@@ -59,7 +49,7 @@ export async function OurExperience() {
               key={customer.id}
               cover_image={customer.cover_image}
               title={customer.title}
-              content={customer.content}
+              content={customer.description}
             />
           ))}
         </Marquee>

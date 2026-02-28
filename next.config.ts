@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "api.seomix.ru",
+        hostname: "api.digital-env.ru",
         port: "",
         pathname: "/assets/**",
         search: "",

@@ -1,5 +1,3 @@
-import directus from "@/lib/directus";
-import { readItems } from "@directus/sdk";
 import { Button } from "../ui/button";
 import { MagicCard } from "../ui/magic-card";
 import { DirectusImage } from "../shared/directus-image";
@@ -11,6 +9,7 @@ import {
   SectionHeadingContentType,
   SectionHeadingTitle,
 } from "../ui/section-heading";
+import { getContent } from "@/actions/get-content";
 
 const text = {
   subTitle: "Наши услуги",
@@ -20,17 +19,8 @@ const text = {
     "Разрабатываем современные сайты с продуманной структурой и дизайном, настраиваем контекстную рекламу в Яндекс Директ, занимаемся SEO-продвижением и аналитикой. Помогаем привлекать клиентов, увеличивать продажи и усиливать присутствие бренда в сети.",
 };
 
-async function getServices() {
-  return directus.request(
-    readItems("services", {
-      fields: ["title", "id", "cover_image", "short_content", "price", "slug"],
-      filter: { status: { _eq: "published" } },
-    })
-  );
-}
-
 export async function OurServices() {
-  const services = await getServices();
+  const services = await getContent({ content_type: "service" });
 
   return (
     <Container className="my-32">
@@ -56,7 +46,7 @@ export async function OurServices() {
               <div className="px-4">
                 <h3>{service.title}</h3>
                 <p className="text-sm text-muted-foreground leading-5">
-                  {service.short_content || ""}
+                  {service.short_description || ""}
                 </p>
               </div>
             </MagicCard>

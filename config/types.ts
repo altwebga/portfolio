@@ -1,95 +1,87 @@
-export interface Image {
+export interface IContent {
   id: string;
-  filename_disk?: string | null;
-  title?: string | null;
-}
-
-export interface Base {
-  id: number;
-  slug: string;
+  sort: number | null;
+  status: "draft" | "published" | "archived";
+  user_created: string;
   date_created: string;
+  user_updated: string | null;
   date_updated: string | null;
-  status: string;
   title: string;
-  content: string | null;
-  cover_image: string | null;
+  slug: string;
+  content_type: "article" | "project" | "service" | "customers";
+  description: string;
+  short_description: string | null;
+  cover_image: string;
+  client: string | null;
+  release_date: string | null;
+  rutube_id: string | null;
+  site_url: string | null;
+  tags: string[] | null;
+  price: string | null;
+  seo: ISeo;
+  logo: string;
 }
 
-export interface SEO {
+export interface ISeo {
   title: string;
   meta_description: string;
   og_image?: string;
-  focus_keyphrase?: string;
   additional_fields?: {
-    canonical_url?: string;
-    custom_meta_tag?: string;
+    canonical_url: string;
+    custom_meta_tag: string;
   };
   sitemap?: {
-    change_frequency?: string;
-    priority?: string;
+    change_frequency:
+      | "always"
+      | "hourly"
+      | "daily"
+      | "weekly"
+      | "monthly"
+      | "yearly"
+      | "never";
+    priority: string;
   };
-  no_index?: boolean;
-  no_follow?: boolean;
+  no_index: boolean;
+  no_follow: boolean;
 }
 
-export interface Hero extends Base {
-  city: string;
-}
-
-export interface Article extends Base {
-  tags: string[] | null;
-  category: string | null;
-  seo: SEO;
-}
-
-export interface Project extends Base {
-  release_date: string | null;
-  client: number | null;
-  site_url: string | null;
-  rutube_id: string | null;
-  seo: SEO;
-}
-
-export interface Service extends Base {
-  short_content: string | null;
-  price: string | null;
-  seo: SEO;
-}
-
-export interface Customer {
-  id: number;
-  title: string;
-  content: string;
-  cover_image: string;
-}
-
-export interface TeamFile {
-  id: number;
-  teams_id: number;
-  directus_files_id: string;
-}
-
-export interface Team {
-  id: number;
-  title: string;
-  position: string;
-  content: string;
-  photo: string;
-  certificates: TeamFile[] | [];
-  status: string;
-}
-
-export interface PrivacyPolicy {
-  title: string;
-  content: string;
-}
-
-export interface RequestWebsite {
+export interface ICustomer {
   id: string;
-  client: string;
+  sort: number | null;
+  user_created: string;
+  date_created: string;
+  user_updated: string | null;
+  date_updated: string | null;
+  title: string;
+  description: string;
+  logo: string;
+}
+
+export interface IRequest {
+  name: string;
   phone: string;
-  agreement: boolean;
-  created_at?: string;
-  page_url?: string;
-  message?: string | null;
+  url: string;
+  message?: string;
+}
+
+export interface IPrivacyPolicy {
+  data: {
+    title: string;
+    description: string;
+  };
+}
+
+export interface ITeam {
+  id: string;
+  status: "draft" | "published" | "archived";
+  sort: number | null;
+  user_created: string;
+  date_created: string;
+  user_updated: string | null;
+  date_updated: string | null;
+  title: string;
+  description: string;
+  photo: string;
+  position: string;
+  education: number[];
 }

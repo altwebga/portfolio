@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 type DirectusImageProps = {
   url: string;
@@ -9,7 +10,7 @@ type DirectusImageProps = {
   loading?: "lazy" | "eager";
 };
 
-const assets = process.env.ASSETS || "https://api.seomix.ru/assets";
+const assets = process.env.NEXT_PUBLIC_ASSETS;
 
 export function DirectusImage({
   url,
@@ -25,7 +26,7 @@ export function DirectusImage({
       alt={alt}
       width={width}
       height={height}
-      className={className}
+      className={cn("rounded-md", className)}
       loading={loading}
     />
   );

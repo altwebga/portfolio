@@ -1,201 +1,118 @@
 "use server";
 
-import directus from "@/lib/directus";
-import { readItems, readSingleton } from "@directus/sdk";
+import { IContent } from "@/config/types";
 
-// -------------------------
-// Articles
-// -------------------------
+const API_URL = process.env.API_URL || "https://localhost:8055";
+const TOKEN = process.env.TOKEN || "";
 
-export const getArticlesSEO = async () => {
-  return directus.request(
-    readItems("articles", {
-      fields: ["slug", "seo", "date_created", "date_updated"],
-      filter: { status: { _eq: "published" } },
-    }),
-  );
+type getContentProps = {
+  content_type?: "service" | "article" | "project";
+  status?: "draft" | "published" | "archived";
+  fields?: string[];
+  slug?: string;
 };
 
-export const getArticleBySlug = async (slug: string) => {
-  const posts = await directus.request(
-    readItems("articles", {
-      limit: 1,
-      fields: ["title", "content", "cover_image", "seo", "tags", "category"],
-      filter: {
-        slug: { _eq: slug },
-        status: { _eq: "published" },
-      },
-    }),
-  );
-
-  return posts?.[0] ?? null;
-};
-
-export const getPublishedArticlesList = async () => {
-  return directus.request(
-    readItems("articles", {
-      fields: ["slug", "title", "date_created", "id", "cover_image", "seo"],
-      sort: ["-date_created"],
-      filter: { status: { _eq: "published" } },
-    }),
-  );
-};
-
-// -------------------------
-// Projects
-// -------------------------
-
-export const getProjectsSEO = async () => {
-  return directus.request(
-    readItems("projects", {
-      fields: ["slug", "seo", "date_created", "date_updated"],
-      filter: { status: { _eq: "published" } },
-    }),
-  );
-};
-
-export const getProjectBySlug = async (slug: string) => {
-  const projects = await directus.request(
-    readItems("projects", {
-      limit: 1,
-      fields: [
-        "title",
-        "content",
-        "cover_image",
-        "seo",
-        "rutube_id",
-        "client",
-        "site_url",
-      ],
-      filter: {
-        slug: { _eq: slug },
-        status: { _eq: "published" },
-      },
-    }),
-  );
-
-  return projects?.[0] ?? null;
-};
-
-export const getPublishedProjectsList = async () => {
-  return directus.request(
-    readItems("projects", {
-      fields: [
-        "slug",
-        "title",
-        "date_created",
-        "id",
-        "cover_image",
-        "seo",
-        "release_date",
-      ],
-      sort: ["-release_date"],
-      filter: { status: { _eq: "published" } },
-    }),
-  );
-};
-
-// -------------------------
-// Customers
-// -------------------------
-
-export const getCustomerById = async (clientId: number) => {
-  const items = await directus.request(
-    readItems("customers", {
-      fields: ["id", "title", "content", "cover_image"],
-      filter: { id: { _eq: clientId } },
-      limit: 1,
-    }),
-  );
-
-  return items?.[0] ?? null;
-};
-
-// -------------------------
-// Services
-// -------------------------
-
-export const getServicesSEO = async () => {
-  return directus.request(
-    readItems("services", {
-      fields: ["slug", "seo", "date_created", "date_updated"],
-      filter: { status: { _eq: "published" } },
-    }),
-  );
-};
-
-export const getPublishedServicesList = async () => {
-  return directus.request(
-    readItems("services", {
-      fields: [
-        "slug",
-        "title",
-        "date_created",
-        "id",
-        "cover_image",
-        "seo",
-        "short_content",
-        "price",
-      ],
-      sort: ["id"],
-      filter: { status: { _eq: "published" } },
-    }),
-  );
-};
-
-export const getServiceBySlug = async (slug: string) => {
-  const services = await directus.request(
-    readItems("services", {
-      limit: 1,
-      fields: [
-        "title",
-        "content",
-        "cover_image",
-        "seo",
-        "short_content",
-        "price",
-      ],
-      filter: {
-        slug: { _eq: slug },
-        status: { _eq: "published" },
-      },
-    }),
-  );
-
-  return services?.[0] ?? null;
-};
-
-// -------------------------
-// Privacy Policy
-// -------------------------
-
-export const getPrivacyPolicy = async () => {
-  return directus.request(
-    readSingleton("privacy_policy", {
-      fields: ["title", "content"],
-    }),
-  );
-};
-
-// -------------------------
-// Teams
-// -------------------------
-
-export const getTeams = async () => {
-  return directus.request(
-    readItems("teams", {
-      fields: [
-        "title",
-        "id",
-        "content",
-        "position",
-        "photo",
-        {
-          certificates: ["directus_files_id"],
+export async function getContent({
+  content_type,
+  status = "published",
+  fields = [
+    "id",
+    "title",
+    "slug",
+    "description",
+    "short_description",
+    "cover_image",
+  ],
+}: getContentProps): Promise<IContent[]> {
+  try {
+    const res = await fetch(
+      `${API_URL}/items/content?filter[content_type][_eq]=${content_type}&filter[status][_eq]=${status}&fields=${fields.join(",")}`,
+      {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
         },
-      ],
-      sort: ["id"],
-      filter: { status: { _eq: "published" } },
-    }),
-  );
-};
+        next: { revalidate: 3600 },
+      },
+    );
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch content: ${res.status}`);
+    }
+
+    const json = await res.json();
+    return json.data;
+  } catch (error) {
+    console.error("getContent error:", error);
+    return [];
+  }
+}
+
+export async function getContentItem({
+  status = "published",
+  slug,
+  fields = ["id", "title", "slug", "description", "cover_image"],
+}: getContentProps) {
+  try {
+    const res = await fetch(
+      `${API_URL}/items/content?filter[slug][_eq]=${slug}&filter[status][_eq]=${status}&fields=${fields.join(",")}`,
+      {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+        next: { revalidate: 3600 },
+      },
+    );
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch content: ${res.status}`);
+    }
+
+    const json = await res.json();
+    return json.data[0];
+  } catch (error) {
+    console.error("getContent error:", error);
+    return [];
+  }
+}
+
+export async function getCustomers() {
+  try {
+    const res = await fetch(`${API_URL}/items/customers`, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch content: ${res.status}`);
+    }
+
+    const json = await res.json();
+    return json.data;
+  } catch (error) {
+    console.error("getCustomers error:", error);
+    return [];
+  }
+}
+
+export async function getTeams() {
+  try {
+    const res = await fetch(`${API_URL}/items/team`, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch content: ${res.status}`);
+    }
+
+    const json = await res.json();
+    return json.data;
+  } catch (error) {
+    console.error("getCustomers error:", error);
+    return [];
+  }
+}
