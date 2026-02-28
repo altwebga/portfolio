@@ -12,6 +12,7 @@ import {
   SectionHeadingBody,
   SectionHeadingTitle,
 } from "@/components/ui/section-heading";
+import { ITeam } from "@/config/types";
 
 export const metadata: Metadata = {
   title: "О веб-студии",
@@ -47,7 +48,7 @@ export default async function AboutPage() {
         {text.subTitle}
       </TextAnimate>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {teams.map((team) => (
+        {teams.map((team: ITeam) => (
           <Card key={team.id}>
             <CardHeader className="flex flex-col md:flex-row gap-4">
               <DirectusImage
@@ -63,11 +64,11 @@ export default async function AboutPage() {
             </CardHeader>
             <CardContent>
               <Markdown
-                markdown={team.content || ""}
+                markdown={team.description || ""}
                 className="text-muted-foreground text-sm"
               />
-              {team.certificates && team.certificates.length > 0 && (
-                <CertificatesGallery certificates={team.certificates} />
+              {team.education && team.education.length > 0 && (
+                <CertificatesGallery certificates={team.education} />
               )}
             </CardContent>
           </Card>

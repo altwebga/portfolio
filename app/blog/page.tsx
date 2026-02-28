@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getPublishedArticlesList } from "@/actions/get-content";
+import { getContent } from "@/actions/get-content";
 import { Container } from "@/components/container/container";
 import { CallActions } from "@/components/shared/call-actions";
 import { DirectusImage } from "@/components/shared/directus-image";
@@ -32,7 +32,18 @@ const text = {
 };
 
 export default async function BlogPage() {
-  const articles = await getPublishedArticlesList();
+  const articles = await getContent({
+    content_type: "article",
+    fields: [
+      "id",
+      "title",
+      "slug",
+      "description",
+      "short_description",
+      "cover_image",
+      "seo",
+    ],
+  });
   return (
     <Container className="my-20">
       <h1>{text.title}</h1>
@@ -55,7 +66,7 @@ export default async function BlogPage() {
                   <div>
                     <h3>{article.title}</h3>
                     <p className="text-muted-foreground">
-                      {article.seo.meta_description}
+                      {article.seo?.meta_description || article.description}
                     </p>
                   </div>
                 </div>

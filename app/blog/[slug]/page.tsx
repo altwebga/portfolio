@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  getArticleBySlug,
-  getPublishedArticlesList,
-} from "@/actions/get-content";
+import { getContentItem, getContent } from "@/actions/get-content";
 import { Markdown } from "@/components/shared/markdown";
 import Link from "next/link";
 import { DirectusImage } from "@/components/shared/directus-image";
@@ -13,7 +10,7 @@ export async function generateMetadata(
   props: PageProps<"/blog/[slug]">,
 ): Promise<Metadata> {
   const { slug } = await props.params;
-  const article = await getArticleBySlug(slug);
+  const article = await getContentItem({ slug, fields: ["*", "seo.*"] });
 
   if (!article?.seo) {
     return { robots: { index: false, follow: false } };
@@ -36,8 +33,8 @@ export async function generateMetadata(
 
 export default async function BlogPage(props: PageProps<"/blog/[slug]">) {
   const { slug } = await props.params;
-  const article = await getArticleBySlug(slug);
-  const articles = await getPublishedArticlesList();
+  const article = await getContentItem({ slug, fields: ["*"] });
+  const articles = await getContent({ content_type: "article" });
   if (!article) notFound();
 
   return (
@@ -53,12 +50,15 @@ export default async function BlogPage(props: PageProps<"/blog/[slug]">) {
               height={1024}
               className="w-4xl h-auto mb-8"
             />
-            <Markdown markdown={article.content || ""} className="md:px-4" />
+            <Markdown
+              markdown={article.description || ""}
+              className="md:px-4"
+            />
             {article.tags && (
               <div className="my-8 flex justify-end gap-4 items-center">
                 <p className="m-0">Теги:</p>
                 <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
-                  {article.tags.map((tag) => (
+                  {article.tags.map((tag: string) => (
                     <li key={tag}>
                       <Badge className="px-4 py-1">{tag}</Badge>
                     </li>
@@ -72,9 +72,9 @@ export default async function BlogPage(props: PageProps<"/blog/[slug]">) {
               <h2>Другие статьи</h2>
               <ul className="space-y-2">
                 {articles
-                  .filter((item) => item.slug !== slug)
+                  .filter((item: any) => item.slug !== slug)
                   .slice(0, 8)
-                  .map((item) => (
+                  .map((item: any) => (
                     <li key={item.id}>
                       <Link href={`/blog/${item.slug}`}>{item.title}</Link>
                     </li>

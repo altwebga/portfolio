@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getProjectBySlug, getCustomerById } from "@/actions/get-content";
+import { getContentItem, getCustomers } from "@/actions/get-content";
 import { Markdown } from "@/components/shared/markdown";
 import { RuTubeFrame } from "@/components/shared/rutube-frame";
 import { Button } from "@/components/ui/button";
@@ -17,10 +17,10 @@ import {
 import { CallbackRequestForm } from "@/components/form/callback-request-form";
 
 export async function generateMetadata(
-  props: PageProps<"/portfolio/[slug]">
+  props: PageProps<"/portfolio/[slug]">,
 ): Promise<Metadata> {
   const { slug } = await props.params;
-  const project = await getProjectBySlug(slug);
+  const project = await getContentItem({ slug, fields: ["*", "seo.*"] });
 
   if (!project?.seo) {
     return { robots: { index: false, follow: false } };
@@ -42,21 +42,24 @@ export async function generateMetadata(
 }
 
 export default async function PortfolioPage(
-  props: PageProps<"/portfolio/[slug]">
+  props: PageProps<"/portfolio/[slug]">,
 ) {
   const { slug } = await props.params;
-  const project = await getProjectBySlug(slug);
+  const project = await getContentItem({ slug, fields: ["*"] });
   if (!project) notFound();
 
-  const customer =
-    project.client !== null ? await getCustomerById(project.client) : null;
+  let customer = null;
+  if (project.client !== null) {
+    const customers = await getCustomers();
+    customer = customers.find((c: any) => c.id === project.client);
+  }
 
   return (
     <article className="my-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="md:w-2/3">
-            <Markdown markdown={project.content || ""} />
+            <Markdown markdown={project.description || ""} />
             <div className="w-full flex justify-end">
               {project.site_url ? (
                 <Button size={"lg"} asChild>
@@ -80,9 +83,9 @@ export default async function PortfolioPage(
             <div className="md:fixed md:top-20 space-y-8">
               {customer && (
                 <CustomerCard
-                  cover_image={customer.cover_image}
+                  cover_image={customer.cover_image || customer.logo}
                   title={customer.title}
-                  content={customer.content}
+                  content={customer.description}
                 />
               )}
               <Card className="min-w-xs">

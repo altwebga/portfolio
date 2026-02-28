@@ -98,7 +98,7 @@ export async function getCustomers() {
 
 export async function getTeams() {
   try {
-    const res = await fetch(`${API_URL}/items/team`, {
+    const res = await fetch(`${API_URL}/items/team?fields=*,education.*`, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
       },

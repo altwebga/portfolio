@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getPublishedProjectsList } from "@/actions/get-content";
+import { getContent } from "@/actions/get-content";
 import { Container } from "@/components/container/container";
 import { DirectusImage } from "@/components/shared/directus-image";
 import { MagicCard } from "@/components/ui/magic-card";
@@ -32,7 +32,7 @@ const text = {
 };
 
 export default async function PortfolioPage() {
-  const projects = await getPublishedProjectsList();
+  const projects = await getContent({ content_type: "project" });
   return (
     <Container className="mt-20">
       <h1>{text.title}</h1>

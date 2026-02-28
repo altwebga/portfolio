@@ -83,5 +83,11 @@ export interface ITeam {
   description: string;
   photo: string;
   position: string;
-  education: number[];
+  education: IEducation[] | [];
+}
+
+export interface IEducation {
+  id: string;
+  team_id: string;
+  directus_files_id: string;
 }
