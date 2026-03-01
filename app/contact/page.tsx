@@ -35,7 +35,7 @@ export default function ContactPage() {
       <TextAnimate animation="blurIn" as="p">
         {text.subTitle}
       </TextAnimate>
-      <div className="flex flex-col md:flex-row gap-4 my-8">
+      <div className="flex flex-col md:flex-row gap-4 py-8">
         <div className="w-full md:w1/2 space-y-8">
           <div className="grid grid-cols-3 gap-2">
             {socialLinks.map((item) => (

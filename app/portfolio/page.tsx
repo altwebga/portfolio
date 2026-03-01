@@ -32,32 +32,50 @@ const text = {
 };
 
 export default async function PortfolioPage() {
-  const projects = await getContent({ content_type: "project" });
+  const projects = await getContent({
+    content_type: "project",
+    fields: ["id", "title", "slug", "cover_image", "release_date"],
+  });
   return (
     <Container className="mt-20">
       <h1>{text.title}</h1>
       <TextAnimate animation="blurIn" as="p">
         {text.subTitle}
       </TextAnimate>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {projects.map((project) => (
-          <Link
-            key={project.id}
-            href={`portfolio/${project.slug}`}
-            className="transition delay-50 duration-150 hover:-translate-2"
-          >
-            <MagicCard className="p-4 rounded-md">
-              <DirectusImage
-                url={project.cover_image || ""}
-                alt={project.title}
-                width={300}
-                height={300}
-                className="w-full object-contain"
-              />
-              <h3>{project.title}</h3>
-            </MagicCard>
-          </Link>
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 py-8">
+        {projects
+          .sort((a, b) => {
+            const dateA = a.release_date
+              ? new Date(a.release_date).getTime()
+              : 0;
+            const dateB = b.release_date
+              ? new Date(b.release_date).getTime()
+              : 0;
+            return dateB - dateA;
+          })
+          .map((project) => (
+            <Link
+              key={project.id}
+              href={`portfolio/${project.slug}`}
+              className="transition delay-50 duration-150 hover:-translate-2"
+            >
+              <MagicCard className="p-4 rounded-md relative">
+                {project.release_date && (
+                  <span className="absolute top-0 right-0 text-xs">
+                    {new Date(project.release_date).getFullYear()}
+                  </span>
+                )}
+                <DirectusImage
+                  url={project.cover_image || ""}
+                  alt={project.title}
+                  width={300}
+                  height={300}
+                  className="w-full object-contain"
+                />
+                <h3 className="px-4">{project.title}</h3>
+              </MagicCard>
+            </Link>
+          ))}
       </div>
     </Container>
   );

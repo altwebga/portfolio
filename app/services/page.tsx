@@ -39,7 +39,7 @@ export default async function ServicesPage() {
       <TextAnimate animation="blurIn" as="p">
         {text.subTitle}
       </TextAnimate>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-8">
         {services.map((service) => (
           <Link href={`/services/${service.slug}`} key={service.id}>
             <MagicCard

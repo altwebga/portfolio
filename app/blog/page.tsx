@@ -6,6 +6,7 @@ import { CallActions } from "@/components/shared/call-actions";
 import { DirectusImage } from "@/components/shared/directus-image";
 import { MagicCard } from "@/components/ui/magic-card";
 import { TextAnimate } from "@/components/ui/text-animate";
+import { SidebarContainer } from "@/components/container/sidebar-conteiner";
 
 export const metadata: Metadata = {
   title: "Блог о разработке и SEO",
@@ -45,13 +46,13 @@ export default async function BlogPage() {
     ],
   });
   return (
-    <Container className="my-20">
+    <SidebarContainer className="my-20" sidebar={<CallActions />}>
       <h1>{text.title}</h1>
       <TextAnimate animation="blurIn" as="p">
         {text.subTitle}
       </TextAnimate>
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="grid grid-cols-1 gap-4 md:w-2/3">
+      <div className="flex flex-col md:flex-row gap-4 py-8">
+        <div className="grid grid-cols-1 gap-4">
           {articles.map((article) => (
             <Link key={article.id} href={`blog/${article.slug}`}>
               <MagicCard className="min-h-60 p-4 rounded-md">
@@ -74,12 +75,7 @@ export default async function BlogPage() {
             </Link>
           ))}
         </div>
-        <aside className="md:w-1/3 md:border-l md:pl-4">
-          <div className="md:fixed md:top-48">
-            <CallActions />
-          </div>
-        </aside>
       </div>
-    </Container>
+    </SidebarContainer>
   );
 }

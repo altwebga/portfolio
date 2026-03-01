@@ -41,7 +41,7 @@ export default async function AboutPage() {
       <TextAnimate animation="blurIn" as="p">
         {text.subTitle}
       </TextAnimate>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-8">
         {teams.map((team: ITeam) => (
           <Card key={team.id}>
             <CardHeader className="flex flex-row gap-4">
