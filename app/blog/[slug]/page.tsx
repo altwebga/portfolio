@@ -5,6 +5,7 @@ import { Markdown } from "@/components/shared/markdown";
 import Link from "next/link";
 import { DirectusImage } from "@/components/shared/directus-image";
 import { Badge } from "@/components/ui/badge";
+import { IContent } from "@/config/types";
 
 export async function generateMetadata(
   props: PageProps<"/blog/[slug]">,
@@ -72,9 +73,9 @@ export default async function BlogPage(props: PageProps<"/blog/[slug]">) {
               <h2>Другие статьи</h2>
               <ul className="space-y-2">
                 {articles
-                  .filter((item: any) => item.slug !== slug)
+                  .filter((item: IContent) => item.slug !== slug)
                   .slice(0, 8)
-                  .map((item: any) => (
+                  .map((item: IContent) => (
                     <li key={item.id}>
                       <Link href={`/blog/${item.slug}`}>{item.title}</Link>
                     </li>

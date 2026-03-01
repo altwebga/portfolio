@@ -6,12 +6,6 @@ import { DirectusImage } from "@/components/shared/directus-image";
 import { Markdown } from "@/components/shared/markdown";
 import { CertificatesGallery } from "@/components/shared/certificates-gallery";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { LightRays } from "@/components/ui/light-rays";
-import {
-  SectionHeading,
-  SectionHeadingBody,
-  SectionHeadingTitle,
-} from "@/components/ui/section-heading";
 import { ITeam } from "@/config/types";
 
 export const metadata: Metadata = {

@@ -5,8 +5,9 @@ import { Markdown } from "@/components/shared/markdown";
 import { RuTubeFrame } from "@/components/shared/rutube-frame";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, MoveLeft } from "lucide-react";
-import { CustomerCard } from "@/components/shared/customer-card";
 import Link from "next/link";
+import { ICustomer } from "@/config/types";
+import { CustomerCard } from "@/components/shared/customer-card";
 import {
   Card,
   CardDescription,
@@ -51,7 +52,7 @@ export default async function PortfolioPage(
   let customer = null;
   if (project.client !== null) {
     const customers = await getCustomers();
-    customer = customers.find((c: any) => c.id === project.client);
+    customer = customers.find((c: ICustomer) => c.id === project.client);
   }
 
   return (

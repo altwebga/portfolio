@@ -22,11 +22,12 @@ export async function sendForm(data: IRequest) {
       throw new Error(text || "Ошибка при отправке формы");
     }
 
-    if (!text) return true;
+    if (!text) return { ok: true };
 
-    return JSON.parse(text);
-  } catch (error) {
+    return { ok: true, data: JSON.parse(text) };
+  } catch (error: unknown) {
     console.error("sendForm error:", error);
-    throw error;
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return { ok: false, error: message };
   }
 }

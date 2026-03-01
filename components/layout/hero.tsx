@@ -1,6 +1,5 @@
 import { Button } from "../ui/button";
 import { socialLinks } from "@/config/social-links";
-import { ArrowDown } from "lucide-react";
 import { CallbackRequestForm } from "../form/callback-request-form";
 import Link from "next/link";
 

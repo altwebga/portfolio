@@ -20,6 +20,7 @@ import {
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild className="md:hidden">
@@ -36,7 +37,7 @@ export function MobileNav() {
                 href={link.href}
                 className={cn(
                   "font-medium transition-colors hover:text-primary",
-                  usePathname() === link.href
+                  pathname === link.href
                     ? "text-primary"
                     : "text-muted-foreground",
                 )}
@@ -55,6 +56,7 @@ export function MobileNav() {
 }
 
 export function DesktopNav() {
+  const pathname = usePathname();
   return (
     <nav className="hidden md:flex flex-row gap-12">
       {menuLinks.map((link) => (
@@ -63,9 +65,7 @@ export function DesktopNav() {
           href={link.href}
           className={cn(
             "font-medium transition-colors hover:text-primary",
-            usePathname() === link.href
-              ? "text-primary"
-              : "text-muted-foreground",
+            pathname === link.href ? "text-primary" : "text-muted-foreground",
           )}
         >
           {link.title}
