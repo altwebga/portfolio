@@ -9,7 +9,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { DirectusImage } from "@/components/shared/directus-image";
-import { Button } from "../ui/button";
 
 type Certificate = {
   directus_files_id: string;
@@ -26,18 +25,16 @@ export function CertificatesGallery({
 
   return (
     <div className="mt-6">
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-2">
         {certificates.map((cert) => (
           <Dialog key={cert.directus_files_id}>
             <DialogTrigger>
-              <Button asChild variant={"ghost"}>
-                <DirectusImage
-                  url={cert.directus_files_id}
-                  width={160}
-                  height={160}
-                  className="w-auto h-40"
-                />
-              </Button>
+              <DirectusImage
+                url={cert.directus_files_id}
+                width={160}
+                height={160}
+                className="w-full h-40"
+              />
             </DialogTrigger>
 
             <DialogContent className="md:min-w-[1024px] p-2">

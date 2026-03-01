@@ -83,7 +83,7 @@ export default async function PortfolioPage(
             <div className="md:fixed md:top-20 space-y-8">
               {customer && (
                 <CustomerCard
-                  cover_image={customer.cover_image || customer.logo}
+                  cover_image={customer.logo}
                   title={customer.title}
                   content={customer.description}
                 />

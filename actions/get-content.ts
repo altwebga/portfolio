@@ -1,12 +1,12 @@
 "use server";
 
-import { IContent } from "@/config/types";
+import { IContent, ICustomer } from "@/config/types";
 
 const API_URL = process.env.API_URL || "https://localhost:8055";
 const TOKEN = process.env.TOKEN || "";
 
 type getContentProps = {
-  content_type?: "service" | "article" | "project";
+  content_type?: "service" | "article" | "project" | "customers";
   status?: "draft" | "published" | "archived";
   fields?: string[];
   slug?: string;
@@ -75,7 +75,7 @@ export async function getContentItem({
   }
 }
 
-export async function getCustomers() {
+export async function getCustomers(): Promise<ICustomer[]> {
   try {
     const res = await fetch(`${API_URL}/items/customers`, {
       headers: {
@@ -112,7 +112,49 @@ export async function getTeams() {
     const json = await res.json();
     return json.data;
   } catch (error) {
-    console.error("getCustomers error:", error);
+    console.error("getTeams error:", error);
     return [];
+  }
+}
+
+export async function getServicesSEO() {
+  return getContent({
+    content_type: "service",
+    fields: ["slug", "date_created", "date_updated", "seo.*"],
+  });
+}
+
+export async function getProjectsSEO() {
+  return getContent({
+    content_type: "project",
+    fields: ["slug", "date_created", "date_updated", "seo.*"],
+  });
+}
+
+export async function getArticlesSEO() {
+  return getContent({
+    content_type: "article",
+    fields: ["slug", "date_created", "date_updated", "seo.*"],
+  });
+}
+
+export async function getPrivacyPolicy() {
+  try {
+    const res = await fetch(`${API_URL}/items/privacy_policy`, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch content: ${res.status}`);
+    }
+
+    const json = await res.json();
+    return json.data;
+  } catch (error) {
+    console.error("getPrivacyPolicy error:", error);
+    return { title: "Privacy Policy", content: "" };
   }
 }

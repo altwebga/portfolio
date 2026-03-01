@@ -1,0 +1,112 @@
+$ next build
+тЦ▓ Next.js 16.1.1 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 4 errors:
+./app/sitemap.ts:3:1
+Export getArticlesSEO doesn't exist in target module
+   1 | import type { MetadataRoute } from "next";
+   2 | import { menuLinks } from "@/config/menu-links";
+>  3 | import {
+     | ^^^^^^^^
+>  4 |   getServicesSEO,
+     | ^^^^^^^^^^^^^^^^^
+>  5 |   getProjectsSEO,
+     | ^^^^^^^^^^^^^^^^^
+>  6 |   getArticlesSEO,
+     | ^^^^^^^^^^^^^^^^^
+>  7 | } from "@/actions/get-content";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://seomix.ru";
+  10 |
+
+The export getArticlesSEO was not found in module [project]/actions/get-content.ts [app-route] (ecmascript).
+Did you mean to import getTeams?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  App Route:
+    ./app/sitemap.ts
+    ./app/sitemap--route-entry.js
+
+
+./app/privacy-policy/page.tsx:3:1
+Export getPrivacyPolicy doesn't exist in target module
+  1 | import { Container } from "@/components/container/container";
+  2 | import { Markdown } from "@/components/shared/markdown";
+> 3 | import { getPrivacyPolicy } from "@/actions/get-content";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export default async function PrivacyPolicyPage() {
+  6 |   const privacy = await getPrivacyPolicy();
+
+The export getPrivacyPolicy was not found in module [project]/actions/get-content.ts [app-rsc] (ecmascript).
+Did you mean to import getTeams?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+
+./app/sitemap.ts:3:1
+Export getProjectsSEO doesn't exist in target module
+   1 | import type { MetadataRoute } from "next";
+   2 | import { menuLinks } from "@/config/menu-links";
+>  3 | import {
+     | ^^^^^^^^
+>  4 |   getServicesSEO,
+     | ^^^^^^^^^^^^^^^^^
+>  5 |   getProjectsSEO,
+     | ^^^^^^^^^^^^^^^^^
+>  6 |   getArticlesSEO,
+     | ^^^^^^^^^^^^^^^^^
+>  7 | } from "@/actions/get-content";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://seomix.ru";
+  10 |
+
+The export getProjectsSEO was not found in module [project]/actions/get-content.ts [app-route] (ecmascript).
+Did you mean to import getCustomers?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  App Route:
+    ./app/sitemap.ts
+    ./app/sitemap--route-entry.js
+
+
+./app/sitemap.ts:3:1
+Export getServicesSEO doesn't exist in target module
+   1 | import type { MetadataRoute } from "next";
+   2 | import { menuLinks } from "@/config/menu-links";
+>  3 | import {
+     | ^^^^^^^^
+>  4 |   getServicesSEO,
+     | ^^^^^^^^^^^^^^^^^
+>  5 |   getProjectsSEO,
+     | ^^^^^^^^^^^^^^^^^
+>  6 |   getArticlesSEO,
+     | ^^^^^^^^^^^^^^^^^
+>  7 | } from "@/actions/get-content";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://seomix.ru";
+  10 |
+
+The export getServicesSEO was not found in module [project]/actions/get-content.ts [app-route] (ecmascript).
+Did you mean to import getTeams?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  App Route:
+    ./app/sitemap.ts
+    ./app/sitemap--route-entry.js
+
+
+    at <unknown> (./app/sitemap.ts:3:1)
+    at <unknown> (./app/privacy-policy/page.tsx:3:1)
+    at <unknown> (./app/sitemap.ts:3:1)
+    at <unknown> (./app/sitemap.ts:3:1)
+error: script "build" exited with code 1

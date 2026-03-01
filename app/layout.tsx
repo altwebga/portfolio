@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <ThemeProvider
           attribute="class"
@@ -48,7 +48,7 @@ export default function RootLayout({
         >
           <Header />
           <ScrollProgress className="top-16" />
-          <main className="basis-full">{children}</main>
+          <main className="grow">{children}</main>
           <Footer />
           <Toaster />
           <CookieNotification />

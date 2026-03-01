@@ -1,7 +1,10 @@
-import { Customer } from "@/config/types";
 import { DirectusImage } from "./directus-image";
 
-type CustomerCardProps = Pick<Customer, "cover_image" | "title" | "content">;
+interface CustomerCardProps {
+  cover_image: string;
+  title: string;
+  content: string;
+}
 
 export function CustomerCard({
   cover_image,

@@ -50,7 +50,7 @@ export default async function AboutPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {teams.map((team: ITeam) => (
           <Card key={team.id}>
-            <CardHeader className="flex flex-col md:flex-row gap-4">
+            <CardHeader className="flex flex-row gap-4">
               <DirectusImage
                 url={team.photo}
                 width={120}
@@ -74,22 +74,6 @@ export default async function AboutPage() {
           </Card>
         ))}
       </div>
-      <SectionHeading className="mt-4">
-        <SectionHeadingTitle>Предыстория</SectionHeadingTitle>
-        <SectionHeadingBody>
-          Всё началось в 2012 году с веб-разработки и интереса к тому, как
-          создаются сайты. Со временем опыт, технологии и подходы позволили
-          перейти к созданию современных, удобных и производительных
-          веб-решений.
-        </SectionHeadingBody>
-        <SectionHeadingBody>
-          Сегодня мы разрабатываем сайты и веб-приложения, продумывая
-          архитектуру, интерфейсы и SEO с самого начала. Работаем компактно,
-          внимательно относясь к деталям и задачам бизнеса, чтобы каждый проект
-          приносил реальный результат.
-        </SectionHeadingBody>
-      </SectionHeading>
-      <LightRays />
     </Container>
   );
 }

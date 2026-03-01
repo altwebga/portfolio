@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
-import { createRequestWebsite } from "@/actions/request-website";
+import { sendForm } from "@/actions/send-form";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -61,10 +61,11 @@ export function ContactForm() {
     }
 
     try {
-      const res = await createRequestWebsite({
-        ...values,
-        page_url: window.location.href,
-        captcha_token: captchaToken,
+      const res = await sendForm({
+        name: values.client,
+        phone: values.phone,
+        message: values.message,
+        url: window.location.href,
       });
 
       if (!res?.ok) {
