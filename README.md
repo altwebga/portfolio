@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Портфолио Веб-студии (Webga / Portfolio)
 
-## Getting Started
+Современный сайт-портфолио веб-студии, разработанный с использованием **Next.js**, **Tailwind CSS** и **Directus** в качестве Headless CMS. Проект отличается высокой производительностью, плавными анимациями и продуманным UI/UX.
 
-First, run the development server:
+## Технологический стек
+
+- **Фреймворк:** [Next.js 15+](https://nextjs.org/) (App Router)
+- **Стилизация:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **UI Компоненты:** [Radix UI](https://www.radix-ui.com/), [Magic UI](https://magicui.design/)
+- **Анимации:** [Framer Motion](https://motion.dev/)
+- **Формы и валидация:** [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)
+- **CMS (Backend/API):** [Directus](https://directus.io/) (Headless CMS)
+- **Интеграции:** Yandex SmartCaptcha, Yandex Metrika
+- **Пакетный менеджер:** [Bun](https://bun.sh/)
+
+## Основные разделы и возможности
+
+- **Портфолио (`/portfolio`)**: Динамический список проектов, загружаемых из CMS, с сортировкой и детальными страницами каждого кейса.
+- **Услуги (`/services`)**: Описание предоставляемых студией услуг с поддержкой SEO-тегов.
+- **Блог (`/blog`)**: Статьи о разработке, дизайне и SEO с поддержкой Markdown (`react-markdown`).
+- **О нас / Команда (`/about`)**: Информация о специалистах студии.
+- **Контакты (`/contact`)**: Формы обратной связи и коллбэк-заявок с интеграцией Yandex SmartCaptcha для защиты от спама.
+
+## Установка и запуск (Локальная разработка)
+
+### Предварительные требования
+
+Для работы с проектом рекомендуется использовать [Bun](https://bun.sh/) (или npm/yarn/pnpm), а также настроенный инстанс CMS Directus.
+
+### 1. Клонирование репозитория
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <ссылка-на-репозиторий>
+cd portfolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Установка зависимостей
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Настройка переменных окружения
 
-## Learn More
+Отредактируйте или создайте файл `.env.local` или `.env` в корне проекта и добавьте следующие переменные:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+API_URL=https://ваша-ссылка-на-directus
+TOKEN=ваш-статичный-токен-directus
+NEXT_PUBLIC_YM_ID=ваш-идентификатор-яндекс-метрики
+NEXT_PUBLIC_SMARTCAPTCHA_SITE_KEY=ваш-публичный-ключ-капчи
+SMARTCAPTCHA_SERVER_KEY=ваш-секретный-ключ-капчи
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Запуск сервера разработки
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+bun run dev
+```
 
-## Deploy on Vercel
+Откройте [http://localhost:3000](http://localhost:3000) в вашем браузере. Страницы будут автоматически обновляться при изменении кода.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Структура проекта
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/app` — Основная маршрутизация Next.js (App Router), страницы сайта и глобальные стили (`globals.css`).
+- `/components` — Переиспользуемые React-компоненты:
+  - `/ui` — Базовые UI-компоненты (построенные на Radix и кастомные).
+  - `/shared` — Общие компоненты, например, `directus-image` для отдачи оптимизированных картинок.
+  - `/container` — Компоненты-обертки лэйаутов.
+- `/actions` — Серверные компоненты и Next.js Server Actions для работы с API Directus (`get-content.ts`).
+- `/config` — Конфигурационные файлы сайта и типы TypeScript.
+- `/public` — Статические файлы (изображения, шрифты, манифесты).
+
+## Сборка для Production
+
+Для сборки оптимизированного билда проекта выполните:
+
+```bash
+bun run build
+```
+
+Запустить скомпилированный билд локально или на сервере можно командой:
+
+```bash
+bun run start
+```
