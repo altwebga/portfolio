@@ -107,7 +107,7 @@ export function CallbackRequestForm({
       }}
     >
       <DialogTrigger asChild>
-        <Button size="lg" type="button">
+        <Button size="lg" type="button" className="min-w-40">
           {textAction}
         </Button>
       </DialogTrigger>
