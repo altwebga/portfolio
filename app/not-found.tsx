@@ -11,7 +11,7 @@ const text = {
 
 export default function NotFound() {
   return (
-    <Container className="flex flex-col h-full justify-center items-center">
+    <Container className="h-screen flex flex-col justify-center items-center">
       <div className="text-center space-y-6 max-w-md">
         <div className="text-9xl font-bold tracking-tight text-muted-foreground">
           404

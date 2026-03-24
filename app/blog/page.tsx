@@ -43,8 +43,15 @@ export default async function BlogPage() {
       "short_description",
       "cover_image",
       "seo",
+      "date_created",
     ],
   });
+
+  const sortedArticles = articles.sort(
+    (a, b) =>
+      new Date(b.date_created).getTime() - new Date(a.date_created).getTime(),
+  );
+
   return (
     <SidebarContainer className="my-20" sidebar={<CallActions />}>
       <h1>{text.title}</h1>
@@ -53,7 +60,7 @@ export default async function BlogPage() {
       </TextAnimate>
       <div className="flex flex-col md:flex-row gap-4 py-8">
         <div className="grid grid-cols-1 gap-4">
-          {articles.map((article) => (
+          {sortedArticles.map((article) => (
             <Link key={article.id} href={`blog/${article.slug}`}>
               <MagicCard className="min-h-60 p-4 rounded-md">
                 <div className="flex flex-col md:flex-row gap-8">
