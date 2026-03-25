@@ -1,31 +1,42 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, Suspense } from "react";
 import ym, { YMInitializer } from "react-yandex-metrika";
 
-const YM_COUNTER_ID = 91677133; // Замените на ваш ID счетчика
+const YM_COUNTER_ID = 91677133;
 
-export const YandexMetrikaContainer = () => {
+function RouterTracker() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (pathname) {
-      ym("hit", pathname);
+      const url = `${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ""}`;
+      ym("hit", url);
     }
-  }, [pathname]);
+  }, [pathname, searchParams]);
 
+  return null;
+}
+
+export const YandexMetrika = () => {
   return (
-    <YMInitializer
-      accounts={[YM_COUNTER_ID]}
-      options={{
-        defer: true,
-        webvisor: true,
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true,
-      }}
-      version="2"
-    />
+    <>
+      <YMInitializer
+        accounts={[YM_COUNTER_ID]}
+        options={{
+          defer: true,
+          webvisor: true,
+          clickmap: true,
+          trackLinks: true,
+          accurateTrackBounce: true,
+        }}
+        version="2"
+      />
+      <Suspense fallback={null}>
+        <RouterTracker />
+      </Suspense>
+    </>
   );
 };

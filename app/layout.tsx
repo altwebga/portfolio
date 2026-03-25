@@ -7,7 +7,7 @@ import { Footer } from "@/components/layout/footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { CookieNotification } from "@/components/shared/cookie-notification";
 import { Toaster } from "@/components/ui/sonner";
-import { YandexMetrikaContainer } from "@/components/shared/yandex-metrika";
+import { YandexMetrika } from "@/components/shared/yandex-metrika";
 import { AIBot } from "@/components/shared/ai-bot";
 
 const geistSans = Geist({
@@ -52,7 +52,7 @@ export default function RootLayout({
           <Footer />
           <Toaster />
           <CookieNotification />
-          <YandexMetrikaContainer />
+          <YandexMetrika />
           <AIBot />
         </ThemeProvider>
       </body>
