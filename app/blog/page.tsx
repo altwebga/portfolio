@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getContent } from "@/actions/get-content";
-import { Container } from "@/components/container/container";
 import { CallActions } from "@/components/shared/call-actions";
 import { DirectusImage } from "@/components/shared/directus-image";
 import { MagicCard } from "@/components/ui/magic-card";

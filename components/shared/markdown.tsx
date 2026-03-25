@@ -2,6 +2,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import Image from "next/image";
+import { DirectusImage } from "./directus-image";
 
 type Props = { markdown: string; className?: string };
 
@@ -18,8 +19,8 @@ export function Markdown({ markdown, className }: Props) {
           img: ({ src, alt }) => {
             if (!src) return null;
             return (
-              <Image
-                src={src as string}
+              <DirectusImage
+                url={src as string}
                 alt={alt ?? ""}
                 width={800}
                 height={600}
