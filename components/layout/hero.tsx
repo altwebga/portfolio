@@ -14,7 +14,8 @@ export function Hero() {
   return (
     <section className="bg-[url(/img/hero_bg.svg)] bg-cover bg-center bg-no-repeat h-[calc(100vh-6rem)]">
       <div className="container mx-auto px-4 mt-20 md:mr-20 flex flex-col justify-between h-full w-full bg-[url(/img/hero_1.png)] bg-position-[right_top_1rem] bg-no-repeat">
-        <div className="flex flex-col gap-8 mt-10 md:mt-48">
+        <div></div>
+        <div className="flex flex-col gap-8">
           <h1 className="text-4xl font-bold flex flex-col">
             {text.title}
             <span className="text-primary text-5xl md:text-8xl">
