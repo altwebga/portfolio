@@ -1,23 +1,16 @@
 import { betterAuth } from "better-auth"
-import { Pool } from "pg"
+import { prismaAdapter } from "better-auth/adapters/prisma"
+import { PrismaClient } from "@prisma/client"
+import { PrismaPg } from "@prisma/adapter-pg"
 
-const database = new Pool({
-  connectionString: "postgresql://test:test@localhost:5432/seomix",
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL,
 })
+const prisma = new PrismaClient({ adapter })
 
 export const auth = betterAuth({
-  database: database,
-  baseURL: "http://localhost:3000/",
-  emailAndPassword: {
-    enabled: true,
-    sendResetPassword: async ({ user, url }) => {
-      console.log(`Password reset link for ${user.email}: ${url}`)
-    },
-  },
-  socialProviders: {
-    github: {
-      clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-    },
-  },
+  database: prismaAdapter(prisma, {
+    provider: "postgresql",
+  }),
+  emailAndPassword: { enabled: true },
 })
